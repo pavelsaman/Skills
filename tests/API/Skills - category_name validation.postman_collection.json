@@ -255,7 +255,7 @@
 							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
 							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
 							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"cat_name\"));\r",
-							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{2,6}Z$/);\r",
 							"    pm.expect(response_data.is_shown).to.eql(pm.variables.get(\"is_shown\"));\r",
 							"});\r",
 							""
@@ -368,25 +368,25 @@
 	],
 	"variable": [
 		{
-			"id": "e6c77694-5dcd-4b9b-b5cb-c2a6ff62fe73",
+			"id": "153148c5-69b5-4c4b-affc-17518df9b62a",
 			"key": "category_name",
 			"value": "\"1\"",
 			"type": "string"
 		},
 		{
-			"id": "79053cb8-9095-4ed4-a8da-1d28d1f7db75",
+			"id": "56a942ca-a058-415a-93f0-fc0f05f0f401",
 			"key": "is_shown",
 			"value": "true",
 			"type": "string"
 		},
 		{
-			"id": "70677124-a31e-468e-a157-b6447602fc1b",
+			"id": "fbcb0e86-a3f2-463c-b447-ef8ba2c217b4",
 			"key": "should_pass",
 			"value": "false",
 			"type": "string"
 		},
 		{
-			"id": "de9710ae-a4a5-4648-9151-c884bb749414",
+			"id": "54842344-89bc-42bc-9fb1-f6d680e1b501",
 			"key": "expected_status",
 			"value": "400",
 			"type": "string"

@@ -253,7 +253,7 @@
 							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
 							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"cat_name\"));\r",
 							"    pm.expect(response_data.skill_name).to.eql(pm.variables.get(\"s_name\"));\r",
-							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{2,6}Z$/);\r",
 							"    pm.expect(response_data.is_shown).to.equal(pm.variables.get(\"is_shown\"));\r",
 							"});"
 						],
@@ -366,31 +366,31 @@
 	],
 	"variable": [
 		{
-			"id": "93be5721-2566-4da2-9b7e-cedeb48688e5",
+			"id": "d72edaa2-dd86-4900-9460-943a47dc834b",
 			"key": "skill_name",
 			"value": "\"a\"",
 			"type": "string"
 		},
 		{
-			"id": "8466e1dc-5141-424c-bc08-e44db2f14454",
+			"id": "35bc3740-568c-48a3-899a-f1e6011e9d86",
 			"key": "category_name",
 			"value": "\"Networking\"",
 			"type": "string"
 		},
 		{
-			"id": "48cb5c57-df0c-43c4-9a89-2987fe6e2b28",
+			"id": "6217f11e-7ae1-494a-94b5-9ee2fb55baef",
 			"key": "is_shown",
 			"value": "true",
 			"type": "string"
 		},
 		{
-			"id": "942652ea-3718-4015-9dcb-bdda6d19fe8b",
+			"id": "9a26695b-254a-4d10-b4ad-3cc3221fb27b",
 			"key": "should_pass",
 			"value": "false",
 			"type": "string"
 		},
 		{
-			"id": "5c4f13d3-b5e1-4c79-88d6-fd2997eb879c",
+			"id": "ce78c474-8532-4a67-90fd-4722c218961b",
 			"key": "expected_status",
 			"value": "400",
 			"type": "string"
