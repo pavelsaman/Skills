@@ -1,0 +1,49 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Runs is_shown validations.</description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>rm -rf reports/</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>newman run ~/py/flask/Skills/tests/API/&apos;Skills - is_shown validation.postman_collection.json&apos; \
+-e ~/py/flask/Skills/tests/API/&apos;Skills_API - localhost.postman_environment.json&apos; \
+-d ~/py/flask/Skills/tests/API/&apos;Skills - is_shown validation.data.json&apos; \
+--reporters cli,html,junit,htmlextra \
+--reporter-junit-export reports/Skills_collection_report.xml \
+--reporter-html-export reports/Skills_collection_report.html \
+--reporter-htmlextra-darkTheme \
+--reporter-htmlextra-export reports</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>reports/*.*</artifacts>
+      <excludes>/builds</excludes>
+      <allowEmptyArchive>true</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+      <caseSensitive>true</caseSensitive>
+    </hudson.tasks.ArtifactArchiver>
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.27">
+      <testResults>reports\Skills_collection_report.xml</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <healthScaleFactor>1.0</healthScaleFactor>
+      <allowEmptyResults>false</allowEmptyResults>
+    </hudson.tasks.junit.JUnitResultArchiver>
+  </publishers>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.9"/>
+  </buildWrappers>
+</project>

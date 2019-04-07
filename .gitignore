@@ -13,3 +13,4 @@ tests/UI/Tests/*.xml
 tests/UI/Results/
 *.log
 *.db
+*.pyc

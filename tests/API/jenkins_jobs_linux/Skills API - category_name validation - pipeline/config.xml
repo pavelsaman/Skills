@@ -13,17 +13,17 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>rm -rf &quot;${WORKSPACE}\reports&quot;</command>
+      <command>rm -rf reports/</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>newman run &quot;C:\Users\PSaman\Desktop\python\flask\skills\tests\API\Skills - category_name validation.postman_collection.json&quot; \
--e &quot;C:\Users\PSaman\Desktop\python\flask\skills\tests\API\Skills_API - localhost.postman_environment.json&quot; \
--d &quot;C:\Users\PSaman\Desktop\python\flask\skills\tests\API\Skills - category_name validation.data.json&quot; \
---bail --reporters cli,junit,html,htmlextra \
---reporter-junit-export &quot;reports\Skills_collection_report.xml&quot; \
---reporter-html-export &quot;reports\Skills_collection_report.html&quot; \
+      <command>newman run ~/py/flask/Skills/tests/API/&apos;Skills - category_name validation.postman_collection.json&apos; \
+-e ~/py/flask/Skills/tests/API/&apos;Skills_API - localhost.postman_environment.json&apos; \
+-d ~/py/flask/Skills/tests/API/&apos;Skills - category_name validation.data.json&apos; \
+--reporters cli,html,junit,htmlextra \
+--reporter-junit-export reports/Skills_collection_report.xml \
+--reporter-html-export reports/Skills_collection_report.html \
 --reporter-htmlextra-darkTheme \
---reporter-htmlextra-export &quot;${WORKSPACE}\reports&quot;</command>
+--reporter-htmlextra-export reports</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
@@ -45,27 +45,14 @@
         <completeBuild>true</completeBuild>
       </threshold>
     </hudson.tasks.BuildTrigger>
-    <htmlpublisher.HtmlPublisher plugin="htmlpublisher@1.18">
-      <reportTargets>
-        <htmlpublisher.HtmlPublisherTarget>
-          <reportName>HTML report</reportName>
-          <reportDir>\reports</reportDir>
-          <reportFiles>Skills_collection_report.html</reportFiles>
-          <alwaysLinkToLastBuild>false</alwaysLinkToLastBuild>
-          <reportTitles></reportTitles>
-          <keepAll>false</keepAll>
-          <allowMissing>false</allowMissing>
-          <includes>**/*</includes>
-          <escapeUnderscores>true</escapeUnderscores>
-        </htmlpublisher.HtmlPublisherTarget>
-      </reportTargets>
-    </htmlpublisher.HtmlPublisher>
-    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.26.1">
+    <hudson.tasks.junit.JUnitResultArchiver plugin="junit@1.27">
       <testResults>reports\Skills_collection_report.xml</testResults>
       <keepLongStdio>false</keepLongStdio>
       <healthScaleFactor>1.0</healthScaleFactor>
       <allowEmptyResults>false</allowEmptyResults>
     </hudson.tasks.junit.JUnitResultArchiver>
   </publishers>
-  <buildWrappers/>
+  <buildWrappers>
+    <hudson.plugins.timestamper.TimestamperBuildWrapper plugin="timestamper@1.9"/>
+  </buildWrappers>
 </project>
