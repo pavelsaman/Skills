@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block user_authenticated %} 
+  <button id="logout" class="btn btn-primary" type="button" onclick="window.location.href='{{url_for('auth.logout')}}'">Log out</button>
+  <button id="delete_account" class="btn btn-primary" type="button" onclick="window.location.href='{{url_for('auth.delete_account')}}'">Delete account</button>
+  <h4>Hello, {{current_user.first_name}}!</h4>
+  <p><strong>Token:</strong> {{current_user.token}} <strong>Token expiration:</strong> {{current_user.token_expiration}}</p>   
+{% endblock user_authenticated %}
+
+{% block add_form %}
+{% if current_user.email == admin_email %}
+<form action="" method="post" role="form">
+    {{ form.hidden_tag() }}
+	{% if form.skill %}
+    <div class="form-group">
+        <label class="control-label" for="skill"><strong>Skill:</strong></label>
+        <input type="text" class="form-control" name="skill" placeholder="Enter a new skill" />
+        <label class="control-label" for="category"><strong>Category:</strong></label>
+        <select class="form-control" name="category">
+            {% for c in form.category.choices %}
+             <option value="{{c[0]}}">{{c[1]}}</option>
+            {% endfor %}
+        </select>
+    </div>
+	{% for error in form.errors.skill %}
+     <div class="alert alert-info text-center">
+         <strong>{{error}}</strong>
+     </div>
+    {% endfor %}
+	{% if form.errors.skill|length == 0 %}
+	 {% for error in form.errors.category %}
+      <div class="alert alert-info text-center">
+          <strong>{{error}}</strong>
+      </div>
+    {% endfor %}
+	{% endif %}
+    <center>
+        <button type="submit" name="add" class="btn btn-success">Add</button>	
+		<button type="submit" name="new_category" class="btn btn-info">Create new category</button>
+    </center>
+	{% else %}
+	<div class="form-group">
+        <label class="control-label" for="category"><strong>Category:</strong></label>
+        <input type="text" class="form-control" name="category" placeholder="Enter a new category" />        
+    </div>	
+	{% for error in form.errors.category %}
+     <div class="alert alert-info text-center">
+         <strong>{{error}}</strong>
+     </div>
+    {% endfor %}
+    <center>       
+		<button type="submit" name="new_category" class="btn btn-info">Create new category</button>
+		<button type="submit" name="go_back" class="btn btn-info">Go Back</button>
+    </center>
+	{% endif %}
+</form>     
+{% endif %}
+{% endblock add_form %}
+
+{% block heading %}
+{% if current_user.email == admin_email %}
+ {% if form.skill %}
+  <h1>New skill</h1>
+ {% else %}
+  <h1>New category</h1>
+ {% endif %}  
+{% endif %}
+{% endblock heading %}
+
+{% block skills_categories %}
+ {% for row in result_set %}
+  {% if row.category_name %}
+   {% if row.skills|length > 0 %}
+    <h2 class="text-center">{{row.category_name}}</h2>
+    {% for s in row.skills %}
+     <table class="table w-100 text-center">
+         <tbody>
+             <tr>
+				{% if current_user.email == admin_email %}
+                 <td align="left">{{s.skill_name}}</td> 
+				 <td align="right">
+					<form action="/auth/delete" method="post">
+						<button id="delete" type="submit" class="btn btn-danger btn-sm" type="button" name="{{s.skill_name}}">Delete!</button>
+					</form>
+				 </td>				 
+				 {% else %}
+				  <td align="center">{{s.skill_name}}</td>
+				 {% endif %}
+             </tr>			 
+         </tbody>
+     </table>
+    {% endfor %}
+   {% endif %}
+  {% endif %}
+ {% endfor %}
+{% endblock skills_categories %}

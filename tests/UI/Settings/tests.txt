@@ -1,0 +1,5 @@
+*** Settings ***
+Resource     ../Keywords/keywords.txt
+Variables    ../Objects/objects.py
+Variables    ../Resources/variables.py
+Variables    ../Resources/test_data.py

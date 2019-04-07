@@ -1,0 +1,58 @@
+[	
+	{
+		"skill_name": "\"IPv4\"",
+		"category_name": "\"Networking\"",
+		"is_shown": "\"True\"",
+		"expected_status": 400,
+		"should_pass": false
+	},
+	{
+		"skill_name": "\"IPv4\"",
+		"category_name": "\"Networking\"",
+		"is_shown": 1,
+		"expected_status": 400,
+		"should_pass": false
+	},
+	{
+		"skill_name": "\"IPv4\"",
+		"category_name": "\"Networking\"",
+		"is_shown": 0,
+		"expected_status": 400,
+		"should_pass": false
+	},
+	{
+		"skill_name": "\"IPv4\"",
+		"category_name": "\"Networking\"",
+		"is_shown": "\"aaaa\"",
+		"expected_status": 400,
+		"should_pass": false
+	},	
+	{
+		"skill_name": "\"IPv4\"",
+		"category_name": "\"Networking\"",
+		"is_shown": "\"1\"",
+		"expected_status": 400,
+		"should_pass": false
+	},
+	{
+		"skill_name": "\"IPv4\"",
+		"category_name": "\"Networking\"",
+		"is_shown": "\"0\"",
+		"expected_status": 400,
+		"should_pass": false
+	},
+	{
+		"skill_name": "\"IPv4\"",
+		"category_name": "\"Networking\"",
+		"is_shown": true,
+		"expected_status": 201,
+		"should_pass": true
+	},
+	{
+		"skill_name": "\"IPv4\"",
+		"category_name": "\"Networking\"",
+		"is_shown": false,
+		"expected_status": 201,
+		"should_pass": true
+	}
+]

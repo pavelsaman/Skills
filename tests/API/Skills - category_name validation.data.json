@@ -1,0 +1,38 @@
+[
+	{
+		"category_name": "\"a\"",
+		"is_shown": true,
+		"expected_status": 400,
+		"should_pass": false
+	},
+	{
+		"category_name": "\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"",
+		"is_shown": true,
+		"expected_status": 400,
+		"should_pass": false
+	},
+	{
+		"category_name": "\"a<>\"",
+		"is_shown": true,
+		"expected_status": 400,
+		"should_pass": false
+	},
+	{
+		"category_name": 1,
+		"is_shown": true,
+		"expected_status": 400,
+		"should_pass": false
+	},
+	{
+		"category_name": 111,
+		"is_shown": true,
+		"expected_status": 400,
+		"should_pass": false
+	},
+	{
+		"category_name": "\"Networking\"",
+		"is_shown": true,
+		"expected_status": 201,
+		"should_pass": true
+	}
+]

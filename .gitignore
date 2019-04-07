@@ -1,0 +1,15 @@
+.idea/
+__pycache__/
+build/
+dist/
+what_to_do.txt
+tests/UI/*.xml
+tests/UI/.project
+logs/
+libspecs/
+tests/UI/Tests/*.png
+tests/UI/Tests/*.html
+tests/UI/Tests/*.xml
+tests/UI/Results/
+*.log
+*.db

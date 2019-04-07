@@ -1,0 +1,413 @@
+{
+	"info": {
+		"_postman_id": "93b75862-5029-469b-b5df-f4b63963fe8e",
+		"name": "Skills - validations",
+		"description": "Data entries length etc.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Adding a new skill - skill_name validation",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "dea67f45-12c8-4ec7-a135-0ebbf7c5e93e",
+						"exec": [
+							"const skills = [\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",",
+							"    \"a\", \"IP<>/\"];",
+							"",
+							"// creating the var",
+							"if(typeof pm.variables.get(\"current_index\") === \"undefined\") {",
+							"    pm.environment.set(\"current_index\", 0);",
+							"}",
+							"",
+							"// until I have test data",
+							"if(pm.variables.get(\"current_index\") < skills.length - 1) {",
+							"    pm.environment.set(\"skill_name\", skills[pm.variables.get(\"current_index\")]);",
+							"    pm.environment.set(\"current_index\", pm.variables.get(\"current_index\") + 1);",
+							"    postman.setNextRequest(\"Adding a new skill - skill_name validation\");",
+							"} else {  // no more test data",
+							"    pm.environment.unset(\"current_index\");",
+							"    pm.environment.unset(\"category_name\");",
+							"    pm.environment.unset(\"skill_name\");",
+							"    pm.environment.unset(\"is_shown\");",
+							"}",
+							"",
+							"pm.environment.set(\"category_name\", \"Networking\");",
+							"pm.environment.set(\"is_shown\", true);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "aace879d-4449-475f-9d1a-2a22cedb50b9",
+						"exec": [
+							"// status code 400\r",
+							"const expected_status_code = 400;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response Should Be\", function() {\r",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));\r",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_api_skill_name\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_admin}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"{{skill_name}}\",\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill - category_name validation",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "dea67f45-12c8-4ec7-a135-0ebbf7c5e93e",
+						"exec": [
+							"const categories = [\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",",
+							"    \"a\", \"Networking<>/\"];",
+							"",
+							"// creating the var",
+							"if(typeof pm.variables.get(\"current_index\") === \"undefined\") {",
+							"    pm.environment.set(\"current_index\", 0);",
+							"}",
+							"",
+							"// until I have test data",
+							"if(pm.variables.get(\"current_index\") < categories.length - 1) {",
+							"    pm.environment.set(\"category_name\", categories[pm.variables.get(\"current_index\")]);",
+							"    pm.environment.set(\"current_index\", pm.variables.get(\"current_index\") + 1);",
+							"    postman.setNextRequest(\"Adding a new skill - category_name validation\");",
+							"} else {  // no more test data",
+							"    pm.environment.unset(\"current_index\");",
+							"    pm.environment.unset(\"category_name\");",
+							"    pm.environment.unset(\"skill_name\");",
+							"    pm.environment.unset(\"is_shown\");",
+							"}",
+							"",
+							"pm.environment.set(\"skill_name\", \"IPv4\");",
+							"pm.environment.set(\"is_shown\", true);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "aace879d-4449-475f-9d1a-2a22cedb50b9",
+						"exec": [
+							"// status code 400\r",
+							"const expected_status_code = 400;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response Should Be\", function() {\r",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));\r",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_api_category_name\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"{{skill_name}}\",\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new category - category_name validation",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "dea67f45-12c8-4ec7-a135-0ebbf7c5e93e",
+						"exec": [
+							"const categories = [\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",",
+							"    \"a\", \"Networking<>/\"];",
+							"",
+							"// creating the var",
+							"if(typeof pm.variables.get(\"current_index\") === \"undefined\") {",
+							"    pm.environment.set(\"current_index\", 0);",
+							"}",
+							"",
+							"// until I have test data",
+							"if(pm.variables.get(\"current_index\") < categories.length - 1) {",
+							"    pm.environment.set(\"category_name\", categories[pm.variables.get(\"current_index\")]);",
+							"    pm.environment.set(\"current_index\", pm.variables.get(\"current_index\") + 1);",
+							"    postman.setNextRequest(\"Adding a new category - category_name validation\");",
+							"} else {  // no more test data",
+							"    pm.environment.unset(\"current_index\");",
+							"    pm.environment.unset(\"category_name\");",
+							"    pm.environment.unset(\"is_shown\");",
+							"}",
+							"",
+							"pm.environment.set(\"is_shown\", true);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "aace879d-4449-475f-9d1a-2a22cedb50b9",
+						"exec": [
+							"// status code 400\r",
+							"const expected_status_code = 400;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response Should Be\", function() {\r",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));\r",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_api_category_name\"));\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check empty DB - skills",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "757d142b-ce04-425d-925c-232325bae3b0",
+						"exec": [
+							"// status code 200\r",
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Empty Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\"));\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\").that.is.empty;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check empty DB - categories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"// status code 200\r",
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Empty Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\"));\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\").that.is.empty;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

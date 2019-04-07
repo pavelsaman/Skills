@@ -1,0 +1,393 @@
+{
+	"info": {
+		"_postman_id": "7e8764ae-efa0-4e0d-b13b-78b5b68f252a",
+		"name": "Skills - is_shown validation",
+		"description": "Data entries length etc.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Adding a new category - is_shown validation",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "dea67f45-12c8-4ec7-a135-0ebbf7c5e93e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "aace879d-4449-475f-9d1a-2a22cedb50b9",
+						"exec": [
+							"const expected_status_code = pm.variables.get(\"expected_status\");\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(parseInt(expected_status_code)));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"if(pm.iterationData.get(\"should_pass\") === false) {\r",
+							"    pm.test(\"Response Should Be\", function() {\r",
+							"        pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));\r",
+							"        pm.expect(response_data.message).to.be.equal(pm.variables.get(\"error_bad_request_format\"));\r",
+							"    });\r",
+							"    \r",
+							"    // check that no skill has been added\r",
+							"    postman.setNextRequest(\"Check empty DB - skills\");\r",
+							"} else {\r",
+							"    // check there's a category in the DB + delete it\r",
+							"    postman.setNextRequest(\"Check created category\");\r",
+							"    pm.environment.set(\"cat_name\", pm.variables.get(\"category_name\").substring(1, pm.variables.get(\"category_name\").length - 1));\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category_name\": {{category_name}},\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check empty DB - skills",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "757d142b-ce04-425d-925c-232325bae3b0",
+						"exec": [
+							"// status code 200\r",
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Empty Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\"));\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\").that.is.empty;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check empty DB - categories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"// status code 200\r",
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Empty Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\"));\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\").that.is.empty;\r",
+							"});\r",
+							"\r",
+							"postman.setNextRequest(null);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check created category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7bfc6859-8787-4f6b-b014-d2925d6b0ecb",
+						"exec": [
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"category_id\", \"category_name\", \"created\", \"is_shown\", \"skills\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.category_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.skills).to.be.an(\"array\").that.is.empty;\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(`Category ${pm.variables.get(\"category_name\")} Should Be Created`, function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"cat_name\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"cat_name\"));\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.is_shown).to.eql(pm.variables.get(\"is_shown\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{cat_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{cat_name}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete category by name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0fec9bb1-5e68-4a98-b182-c31df8e1a94e",
+						"exec": [
+							"const expected_status_code = 200;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_delete_json\")));",
+							"});",
+							"",
+							"pm.environment.unset(\"cat_name\");",
+							"",
+							"// check everything has been deleted",
+							"postman.setNextRequest(\"Check empty DB - categories\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{cat_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{cat_name}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3517027e-25c2-489b-9686-371801bc50e4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "01e9c6ec-6f78-46b6-9f46-ef7f7abab33e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "8887df1d-f53b-40fa-906e-968f8770f72e",
+			"key": "category_name",
+			"value": "\"Networking\"",
+			"type": "string"
+		},
+		{
+			"id": "93b4a8b9-a7f3-4cdf-b999-9ffe33944180",
+			"key": "is_shown",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"id": "39b69844-55a2-4654-852f-a34eb6cdd11d",
+			"key": "should_pass",
+			"value": "false",
+			"type": "string"
+		},
+		{
+			"id": "698e6488-ec53-44b8-b478-5d035ab078eb",
+			"key": "expected_status",
+			"value": "400",
+			"type": "string"
+		}
+	]
+}

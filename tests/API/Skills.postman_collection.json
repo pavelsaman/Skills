@@ -1,0 +1,4794 @@
+{
+	"info": {
+		"_postman_id": "ed5c526c-e8ea-4396-98a1-bef471d49af3",
+		"name": "Skills",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Getting all skills admin token - empty DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "757d142b-ce04-425d-925c-232325bae3b0",
+						"exec": [
+							"// status code 200\r",
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Empty Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\"));\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\").that.is.empty;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Getting all skills with admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all categories admin token - empty DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"// status code 200\r",
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Empty Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\"));\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\").that.is.empty;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Getting all categories with admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"// status code 200\r",
+							"const expected_status_code = 201;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    // keys in JSON\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"category_name\", \"created\", \"is_shown\", \"skill_id\",\r",
+							"        \"skill_name\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.skill_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.skill_name).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\") + \"/\"+ pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.skill_name).to.eql(pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.is_shown).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"skill_id\", response_data.skill_id)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"skill_name\", \"IP\");",
+							"pm.environment.set(\"category_name\", \"Networking\");",
+							"pm.environment.set(\"is_shown\", true);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"{{skill_name}}\",\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a new skill with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with valid admin token - wrong input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"// status code 400\r",
+							"const expected_status_code = 400;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response Should Be\", function() {\r",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));\r",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_bad_request_format\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category_name\": \"random\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a new skill with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with valid admin token - wrong input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"// status code 400\r",
+							"const expected_status_code = 400;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response Should Be\", function() {\r",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));\r",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_bad_request_format\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"random\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a new skill with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with valid admin token - wrong input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"// status code 400\r",
+							"const expected_status_code = 400;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response Should Be\", function() {\r",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));\r",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_bad_request_format\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"random\"\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a new skill with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with valid admin token - wrong input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"// status code 400\r",
+							"const expected_status_code = 400;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response Should Be\", function() {\r",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));\r",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_bad_request_format\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category_name\": \"random\"\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a new skill with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with valid admin token - wrong input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"// status code 400\r",
+							"const expected_status_code = 400;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response Should Be\", function() {\r",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));\r",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_bad_request_format\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category_name\": \"random\",\n\t\"a\": \"random\",\n\t\"b\": \"random\"\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a new skill with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with valid admin token - wrong input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"// status code 400\r",
+							"const expected_status_code = 400;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response Should Be\", function() {\r",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));\r",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_bad_request_format\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"random\",\n\t\"a\": \"random\",\n\t\"b\": \"random\"\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a new skill with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with valid not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"// status code 401",
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"// headers - JSON",
+							"pm.test(\"Header includes type JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
+							"});",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_not_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "id",
+						"type": "text",
+						"value": "dfasfadfad",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"{{skill_name}}\",\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating new skill with a token that's valid but doesn't belong to admin."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with invalid token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"// status code 401",
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"// headers - JSON",
+							"pm.test(\"Header includes type JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
+							"});",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{invalid_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"{{skill_name}}\",\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a new skill with an invalid token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with expired token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"// status code 401\r",
+							"const expected_status_code = 401;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Response Should Be Unauthorized\", function() {\r",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{expired_token_not_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"{{skill_name}}\",\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a new skill with an expired token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a duplicate skill with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"// status code 400\r",
+							"const expected_status_code = 400;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"const response_data = pm.response.json()\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"error\", \"message\");\r",
+							"    pm.expect(response_data).to.have.property(\"error\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.property(\"message\").that.is.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Empty Values\", function() {\r",
+							"    pm.expect(response_data.error).to.eql(pm.variables.get(\"txt_error\"));\r",
+							"    pm.expect(response_data.message).to.eql(pm.variables.get(\"error_skill_msg\"));\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "id",
+						"type": "text",
+						"value": "dfasfadfad",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"{{skill_name}}\",\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a duplicate skill."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all skills admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "757d142b-ce04-425d-925c-232325bae3b0",
+						"exec": [
+							"// status code 200\r",
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.items[0].category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items[0].created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items[0].is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.items[0].skill_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.items[0].skill_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Only One Skill\", function() {\r",
+							"    pm.expect(response_data.items.length).to.eql(1);\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\"))\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\") + \"/\"+ pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.items[0].skill_name).to.eql(pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data.items[0].skill_id).to.eql(pm.variables.get(\"skill_id\"));\r",
+							"    pm.expect(response_data.items[0].category_name).to.eql(pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.items[0].created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.items[0].is_shown).to.eql(pm.variables.get(\"is_shown\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Getting all skills with admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all categories admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"// status code 200\r",
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.items[0].category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items[0].created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items[0].is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.items[0].category_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.items[0].category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\");\r",
+							"    pm.expect(response_data.items[0].skills).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Only One Category\", function() {\r",
+							"    pm.expect(response_data.items.length).to.eql(1);\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\"))\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.items[0].category_name).to.eql(pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.items[0].created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.items[0].is_shown).to.eql(pm.variables.get(\"is_shown\"));\r",
+							"    pm.expect(response_data.items[0].skills.length).to.eql(1);\r",
+							"    pm.expect(response_data.items[0].skills).to.include(pm.variables.get(\"skill_name\"));\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"category_id\", response_data.items[0].category_id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Getting all categories with admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a skill by name with valid not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"// status code 401",
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_name}}"
+					]
+				},
+				"description": "Deleting a skill by name with a valid not admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a skill by id with valid not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_id}}"
+					]
+				},
+				"description": "Deleting a skill by id with a valid not admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a skill by name with invalid token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{invalid_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_name}}"
+					]
+				},
+				"description": "Deleting a skill by id with an invalid token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a skill by id with invalid token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{invalid_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_id}}"
+					]
+				},
+				"description": "Deleting a skill by id with an invalid token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a skill by name with expired token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{expired_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_name}}"
+					]
+				},
+				"description": "Deleting a skill by name with an expired token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a skill by id with expired token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{expired_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_id}}"
+					]
+				},
+				"description": "Deleting a skill by id with an expired token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all skills not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "757d142b-ce04-425d-925c-232325bae3b0",
+						"exec": [
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.items[0].category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items[0].created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items[0].is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.items[0].skill_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.items[0].skill_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Only One Skill\", function() {\r",
+							"    pm.expect(response_data.items.length).to.eql(1);\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\"))\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\") + \"/\"+ pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.items[0].skill_name).to.eql(pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data.items[0].skill_id).to.eql(pm.variables.get(\"skill_id\"));\r",
+							"    pm.expect(response_data.items[0].category_name).to.eql(pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.items[0].created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.items[0].is_shown).to.eql(pm.variables.get(\"is_shown\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_not_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Getting all skills with not admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all skills invalid token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "757d142b-ce04-425d-925c-232325bae3b0",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{invalid_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Getting all skills with an invalid token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all skills expired token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "757d142b-ce04-425d-925c-232325bae3b0",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{expired_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Getting all skills with an expired token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all categories not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.items[0].category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items[0].created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items[0].is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.items[0].category_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.items[0].category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\");\r",
+							"    pm.expect(response_data.items[0].skills).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Only One Category\", function() {\r",
+							"    pm.expect(response_data.items.length).to.eql(1);\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\"))\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.items[0].category_name).to.eql(pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.items[0].created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.items[0].is_shown).to.eql(pm.variables.get(\"is_shown\"));\r",
+							"    pm.expect(response_data.items[0].skills.length).to.eql(1);\r",
+							"    pm.expect(response_data.items[0].skills).to.include(pm.variables.get(\"skill_name\"));\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"category_id\", response_data.items[0].category_id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_not_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Getting all categories with not admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all categories invalid token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{invalid_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Getting all categories with an invalid token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all categories expired token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{expired_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Getting all categories with an expired token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a skill by name with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 200;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_delete_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_name}}"
+					]
+				},
+				"description": "Deleting a skill by name with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all skills - empty DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "757d142b-ce04-425d-925c-232325bae3b0",
+						"exec": [
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Empty Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\"));\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\").that.is.empty;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Getting all skills from the DB."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all categories - empty DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Empty Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\"));\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\").that.is.empty;\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Getting all categories from the DB."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 201;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    // keys in JSON\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"category_name\", \"created\", \"is_shown\", \"skill_id\",\r",
+							"        \"skill_name\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.skill_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.skill_name).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\") + \"/\"+ pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.skill_name).to.eql(pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.is_shown).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"skill_id\", response_data.skill_id)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"skill_name\", \"IP\");\r",
+							"pm.environment.set(\"category_name\", \"Networking\");\r",
+							"pm.environment.set(\"is_shown\", true);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"{{skill_name}}\",\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a new skill with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with valid admin token - 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 201;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    // keys in JSON\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"category_name\", \"created\", \"is_shown\", \"skill_id\",\r",
+							"        \"skill_name\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.skill_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.skill_name).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\") + \"/\"+ pm.variables.get(\"skill_name_2\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"api_skills\") + \"/\"+ pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data.skill_name).to.eql(pm.variables.get(\"skill_name_2\"));\r",
+							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"category_name_2\"));\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.is_shown).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"skill_id_2\", response_data.skill_id)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"skill_name_2\", \"Python\");\r",
+							"pm.environment.set(\"category_name_2\", \"Scripting\");\r",
+							"pm.environment.set(\"is_shown_2\", true);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"{{skill_name_2}}\",\n\t\"category_name\": \"{{category_name_2}}\",\n\t\"is_shown\": {{is_shown_2}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a new skill with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a skill by id with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 200;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_delete_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_id_2}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_id_2}}"
+					]
+				},
+				"description": "Deleting a skill by id with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with valid admin token - 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 201;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    // keys in JSON\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"category_name\", \"created\", \"is_shown\", \"skill_id\",\r",
+							"        \"skill_name\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.skill_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.skill_name).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\") + \"/\"+ pm.variables.get(\"skill_name_3\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"api_skills\") + \"/\"+ pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data.skill_name).to.eql(pm.variables.get(\"skill_name_3\"));\r",
+							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"category_name_3\"));\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.is_shown).to.be.false;\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"skill_id_3\", response_data.skill_id)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"skill_name_3\", \"Flask\");\r",
+							"pm.environment.set(\"category_name_3\", \"Scripting\");\r",
+							"pm.environment.set(\"is_shown_3\", false);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"{{skill_name_3}}\",\n\t\"category_name\": \"{{category_name_3}}\",\n\t\"is_shown\": {{is_shown_3}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a new skill with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all skills with not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9a7459ee-6200-48ee-aa50-8d2509ea7d25",
+						"exec": [
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    \r",
+							"    for(let o of response_data.items) {\r",
+							"        // nested keys\r",
+							"        pm.expect(o).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"        pm.expect(o).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"        pm.expect(o).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"        // datatypes\r",
+							"        pm.expect(o.category_name).to.be.a(\"string\");\r",
+							"        pm.expect(o.created).to.be.a(\"string\");\r",
+							"        pm.expect(o.is_shown).to.be.oneOf([true, false])\r",
+							"        pm.expect(o.skill_id).to.be.a(\"number\");\r",
+							"        pm.expect(o.skill_name).to.be.a(\"string\");\r",
+							"    }\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Two Skills\", function() {\r",
+							"    pm.expect(response_data.items.length).to.eql(2);\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\"));\r",
+							"    \r",
+							"    for(let o of response_data.items) {\r",
+							"        console.log(o.skill_id + \" - \" + o.skill_name);\r",
+							"        pm.expect(o.skill_name).to.be.oneOf([pm.variables.get(\"skill_name\"), pm.variables.get(\"skill_name_3\")]);\r",
+							"        pm.expect(o.skill_id).to.be.oneOf([pm.variables.get(\"skill_id\"), pm.variables.get(\"skill_id_3\")]);\r",
+							"        pm.expect(o.category_name).to.be.oneOf([pm.variables.get(\"category_name\"), pm.variables.get(\"category_name_3\")]);\r",
+							"        // I deleted the second one\r",
+							"        pm.expect(o.skill_id).to.not.eql(pm.variables.get(\"skill_id_2\"));\r",
+							"        pm.expect(o.skill_name).to.not.eql(pm.variables.get(\"skill_name_2\"));\r",
+							"        pm.expect(o.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    }\r",
+							"    \r",
+							"    // previous and next links\r",
+							"    pm.expect(response_data.items[0]._links.previous).to.eql(pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.items[0]._links.next).to.eql(pm.variables.get(\"api_skills\") + \"/\" + pm.variables.get(\"skill_name_3\"));\r",
+							"    \r",
+							"    pm.expect(response_data.items[1]._links.next).to.eql(pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.items[1]._links.previous).to.eql(pm.variables.get(\"api_skills\") + \"/\" + pm.variables.get(\"skill_name\"));\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a skill by id with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 200;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_delete_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_id}}"
+					]
+				},
+				"description": "Deleting a skill by id with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a skill by id with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 200;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_delete_json\")));",
+							"});",
+							"",
+							"// cleanup",
+							"pm.environment.unset(\"skill_id\");",
+							"pm.environment.unset(\"skill_name\");",
+							"pm.environment.unset(\"category_name\");",
+							"pm.environment.unset(\"is_shown\");",
+							"pm.environment.unset(\"skill_id_2\");",
+							"pm.environment.unset(\"skill_name_2\");",
+							"pm.environment.unset(\"category_name_2\");",
+							"pm.environment.unset(\"is_shown_2\");",
+							"pm.environment.unset(\"skill_id_3\");",
+							"pm.environment.unset(\"skill_name_3\");",
+							"pm.environment.unset(\"category_name_3\");",
+							"pm.environment.unset(\"is_shown_3\");",
+							"pm.environment.unset(\"category_id\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_id_3}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_id_3}}"
+					]
+				},
+				"description": "Deleting a skill by id with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new category with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 201;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    // keys in JSON\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"category_name\", \"category_id\", \"created\", \"is_shown\",\r",
+							"        \"skills\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\").that.is.a('string');\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\").that.is.a('string');\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a('string');\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.category_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.is_shown).to.be.oneOf([true, false]);\r",
+							"    pm.expect(response_data.skills).to.be.a(\"array\").that.is.empty;\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.is_shown).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"category_id\", response_data.category_id)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"category_name\", \"Programming\");\r",
+							"pm.environment.set(\"is_shown\", true);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Creating a new category with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new category with valid not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"// headers - JSON",
+							"pm.test(\"Header includes type JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
+							"});",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"category_name\", \"Programming\");\r",
+							"pm.environment.set(\"is_shown\", true);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_not_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Creating a new category with a valid not admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new category with invalid token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"// headers - JSON",
+							"pm.test(\"Header includes type JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
+							"});",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"category_name\", \"Programming\");\r",
+							"pm.environment.set(\"is_shown\", true);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{invalid_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Creating a new category with an invalid token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new category with expired token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"// headers - JSON",
+							"pm.test(\"Header includes type JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
+							"});",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"category_name\", \"Programming\");\r",
+							"pm.environment.set(\"is_shown\", true);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{expired_token_not_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Creating a new category with an expired token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new category with valid admin token - wrong input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 400;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"// headers - JSON",
+							"pm.test(\"Header includes type JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
+							"});",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_bad_request_format\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"category_name\", \"Programming\");\r",
+							"pm.environment.set(\"is_shown\", true);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category_name\": \"{{category_name}}\",\n\t\"is_shown\": {{is_shown}},\n\t\"random\": 152\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Creating a new category with a valid admin token. Wrong input."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new category with valid admin token - wrong input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 400;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"// headers - JSON",
+							"pm.test(\"Header includes type JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
+							"});",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_bad_request_format\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"category_name\", \"Programming\");\r",
+							"pm.environment.set(\"is_shown\", true);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"is_shown\": {{is_shown}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Creating a new category with a valid admin token. Wrong input."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new category with valid admin token - wrong input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 400;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"// headers - JSON",
+							"pm.test(\"Header includes type JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
+							"});",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_bad_request_format\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"category_name\", \"Programming\");\r",
+							"pm.environment.set(\"is_shown\", true);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Creating a new category with a valid admin token. Wrong input."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new category with valid admin token - wrong input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 400;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"// headers - JSON",
+							"pm.test(\"Header includes type JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
+							"});",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_bad_request_format\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"category_name\", \"Programming\");\r",
+							"pm.environment.set(\"is_shown\", true);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"random\": 152\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Creating a new category with a valid admin token. Wrong input."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new category with valid admin token - wrong input",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 400;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"// headers - JSON",
+							"pm.test(\"Header includes type JSON\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
+							"});",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_bad_request_format\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"category_name\", \"Programming\");\r",
+							"pm.environment.set(\"is_shown\", true);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category_name\": \"{{category_name}}\",\n\t\"random\": 152\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Creating a new category with a valid admin token. Wrong input."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all categories not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.items[0].category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items[0].created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items[0].is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.items[0].category_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.items[0].category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.items).to.be.an(\"array\");\r",
+							"    pm.expect(response_data.items[0].skills).to.be.an(\"array\").that.is.empty;\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Only One Category\", function() {\r",
+							"    pm.expect(response_data.items.length).to.eql(1);\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\"))\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.items[0]).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.items[0].category_name).to.eql(pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.items[0].created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.items[0].is_shown).to.eql(pm.variables.get(\"is_shown\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Getting all categories with not admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting a category by name not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"category_id\", \"category_name\", \"created\", \"is_shown\", \"skills\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.category_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.skills).to.be.an(\"array\").that.is.empty;\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Only One Category\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.is_shown).to.eql(pm.variables.get(\"is_shown\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_name}}"
+					]
+				},
+				"description": "Getting a category by name with not admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new category with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 201;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    // keys in JSON\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"category_name\", \"category_id\", \"created\", \"is_shown\",\r",
+							"        \"skills\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\").that.is.a('string');\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\").that.is.a('string');\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a('string');\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.category_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.is_shown).to.be.oneOf([true, false]);\r",
+							"    pm.expect(response_data.skills).to.be.a(\"array\").that.is.empty;\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name_2\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"category_name_2\"));\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.is_shown).to.be.false;\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"category_id_2\", response_data.category_id)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"category_name_2\", \"Networking\");\r",
+							"pm.environment.set(\"is_shown_2\", false);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category_name\": \"{{category_name_2}}\",\n\t\"is_shown\": {{is_shown_2}}\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Creating a new category with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting a category by id not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"category_id\", \"category_name\", \"created\", \"is_shown\", \"skills\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.category_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.skills).to.be.an(\"array\").that.is.empty;\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Only One Category\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_id_2\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_id\"));\r",
+							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"category_name_2\"));\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.is_shown).to.eql(pm.variables.get(\"is_shown_2\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_id_2}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_id_2}}"
+					]
+				},
+				"description": "Getting a category by id with not admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new skill with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 201;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    // keys in JSON\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"category_name\", \"created\", \"is_shown\", \"skill_id\",\r",
+							"        \"skill_name\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.skill_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.skill_name).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\") + \"/\"+ pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.skill_name).to.eql(pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"category_name_2\"));\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.is_shown).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"skill_id\", response_data.skill_id)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							"pm.environment.set(\"skill_name\", \"IP\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"skill_name\": \"{{skill_name}}\",\n\t\"category_name\": \"{{category_name_2}}\"\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Creating a new skill with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting a skill by name not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"category_name\", \"created\", \"is_shown\", \"skill_id\", \"skill_name\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.skill_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.skill_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Only One Skill\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\") + \"/\"+ pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"category_name_2\"));\r",
+							"    pm.expect(response_data.skill_name).to.eql(pm.variables.get(\"skill_name\"));\r",
+							"    pm.expect(response_data.skill_id).to.eql(pm.variables.get(\"skill_id\"));\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.is_shown).to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_name}}"
+					]
+				},
+				"description": "Getting a skill by name with not admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting a category by id admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"category_id\", \"category_name\", \"created\", \"is_shown\", \"skills\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.is_shown).to.be.oneOf([true, false])\r",
+							"    pm.expect(response_data.category_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.skills).to.be.an(\"array\").that.is.not.empty;\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Only One Category\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_id_2\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_id\"));\r",
+							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"category_name_2\"));\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.is_shown).to.eql(pm.variables.get(\"is_shown_2\"));\r",
+							"    pm.expect(response_data.skills.length).to.eql(1);\r",
+							"    pm.expect(response_data.skills[0]).to.eql(pm.variables.get(\"skill_name\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_id_2}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_id_2}}"
+					]
+				},
+				"description": "Getting a category by id with admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all categories not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data.items).to.be.an('array').that.is.not.empty;\r",
+							"    pm.expect(response_data.items.length).to.eql(2);\r",
+							"    \r",
+							"    for(let o of response_data.items) {\r",
+							"        pm.expect(o).to.have.all.keys(\"_links\", \"category_id\", \"category_name\", \"created\", \"is_shown\", \"skills\");\r",
+							"        // nested keys\r",
+							"        pm.expect(o).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"        pm.expect(o).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"        pm.expect(o).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"        // datatypes\r",
+							"        pm.expect(o.category_name).to.be.a(\"string\");\r",
+							"        pm.expect(o.created).to.be.a(\"string\");\r",
+							"        pm.expect(o.is_shown).to.be.oneOf([true, false])\r",
+							"        pm.expect(o.category_id).to.be.a(\"number\");\r",
+							"        pm.expect(o.category_name).to.be.a(\"string\");\r",
+							"        pm.expect(o.skills).to.be.an(\"array\");\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Two Categories\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\"))\r",
+							"    \r",
+							"    for(let o of response_data.items) {\r",
+							"        if(o.category_id == pm.variables.get(\"category_id\")) {\r",
+							"            pm.expect(o.category_name).to.eql(pm.variables.get(\"category_name\"));\r",
+							"            pm.expect(o.is_shown).to.eql(pm.variables.get(\"is_shown\"));\r",
+							"            pm.expect(o.skills).to.be.an(\"array\").that.is.empty;\r",
+							"            pm.expect(o).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name\"));\r",
+							"            pm.expect(o).to.have.nested.property(\"_links.next\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name_2\"));\r",
+							"            pm.expect(o).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"        }\r",
+							"        if(o.category_id == pm.variables.get(\"category_id_2\")) {\r",
+							"            pm.expect(o.category_name).to.eql(pm.variables.get(\"category_name_2\"));\r",
+							"            pm.expect(o.is_shown).to.be.false;\r",
+							"            pm.expect(o.skills).to.be.an(\"array\").that.is.not.empty;\r",
+							"            pm.expect(o.skills.length).to.eql(1);\r",
+							"            pm.expect(o).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name_2\"));\r",
+							"            pm.expect(o).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"            pm.expect(o).to.have.nested.property(\"_links.previous\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name\"));\r",
+							"        }\r",
+							"        pm.expect(o.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Getting all categories with not admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all categories no token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 404;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error_not_found\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Getting all categories with no token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting a category by id no token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 404;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error_not_found\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_id_2}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_id_2}}"
+					]
+				},
+				"description": "Getting a category by id with no token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting a category by name no token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 404;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error_not_found\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_name_2}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_name_2}}"
+					]
+				},
+				"description": "Getting a category by name with no token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a category by name with valid not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_name}}"
+					]
+				},
+				"description": "Deleting a category by name with valid not admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a category by id with valid not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_id}}"
+					]
+				},
+				"description": "Deleting a category by id with valid not admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a category by name with invalid token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{invalid_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_name}}"
+					]
+				},
+				"description": "Deleting a category by name with invalid token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a category by id with invalid token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{invalid_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_id}}"
+					]
+				},
+				"description": "Deleting a category by id with invalid token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a category by name with expired token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{expired_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_name}}"
+					]
+				},
+				"description": "Deleting a category by name with an expired token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a category by id with expired token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 401;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_unauthorized_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{expired_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_id}}"
+					]
+				},
+				"description": "Deleting a category by id with an expired token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all categories not admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 200;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"items\");\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"    pm.expect(response_data.items).to.be.an('array').that.is.not.empty;\r",
+							"    pm.expect(response_data.items.length).to.eql(2);\r",
+							"    \r",
+							"    for(let o of response_data.items) {\r",
+							"        pm.expect(o).to.have.all.keys(\"_links\", \"category_id\", \"category_name\", \"created\", \"is_shown\", \"skills\");\r",
+							"        // nested keys\r",
+							"        pm.expect(o).to.have.nested.property(\"_links.next\").that.is.a(\"string\");\r",
+							"        pm.expect(o).to.have.nested.property(\"_links.previous\").that.is.a(\"string\");\r",
+							"        pm.expect(o).to.have.nested.property(\"_links.self\").that.is.a(\"string\");\r",
+							"        // datatypes\r",
+							"        pm.expect(o.category_name).to.be.a(\"string\");\r",
+							"        pm.expect(o.created).to.be.a(\"string\");\r",
+							"        pm.expect(o.is_shown).to.be.oneOf([true, false])\r",
+							"        pm.expect(o.category_id).to.be.a(\"number\");\r",
+							"        pm.expect(o.category_name).to.be.a(\"string\");\r",
+							"        pm.expect(o.skills).to.be.an(\"array\");\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Two Categories\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\"))\r",
+							"    \r",
+							"    for(let o of response_data.items) {\r",
+							"        if(o.category_id == pm.variables.get(\"category_id\")) {\r",
+							"            pm.expect(o.category_name).to.eql(pm.variables.get(\"category_name\"));\r",
+							"            pm.expect(o.is_shown).to.eql(pm.variables.get(\"is_shown\"));\r",
+							"            pm.expect(o.skills).to.be.an(\"array\").that.is.empty;\r",
+							"            pm.expect(o).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name\"));\r",
+							"            pm.expect(o).to.have.nested.property(\"_links.next\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name_2\"));\r",
+							"            pm.expect(o).to.have.nested.property(\"_links.previous\", pm.variables.get(\"NULL\"));\r",
+							"        }\r",
+							"        if(o.category_id == pm.variables.get(\"category_id_2\")) {\r",
+							"            pm.expect(o.category_name).to.eql(pm.variables.get(\"category_name_2\"));\r",
+							"            pm.expect(o.is_shown).to.be.false;\r",
+							"            pm.expect(o.skills).to.be.an(\"array\").that.is.not.empty;\r",
+							"            pm.expect(o.skills.length).to.eql(1);\r",
+							"            pm.expect(o).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name_2\"));\r",
+							"            pm.expect(o).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"            pm.expect(o).to.have.nested.property(\"_links.previous\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name\"));\r",
+							"        }\r",
+							"        pm.expect(o.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_not_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Getting all categories with not admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a category by id with valid admin token - bad request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 400;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error\"));",
+							"    pm.expect(response_data).to.have.property(\"message\", pm.variables.get(\"error_category_msg\"));",
+							"    pm.expect(response_data).to.have.all.keys(\"error\", \"message\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_id_2}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_id_2}}"
+					]
+				},
+				"description": "Deleting a category by id with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a category by id with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 200;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_delete_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_id}}"
+					]
+				},
+				"description": "Deleting a category by id with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a new category with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
+						"exec": [
+							"const expected_status_code = 201;\r",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"\r",
+							"// headers - JSON\r",
+							"pm.test(\"Header includes type JSON\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
+							"});\r",
+							"\r",
+							"const response_data = pm.response.json();\r",
+							"\r",
+							"// keys and datatypes\r",
+							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
+							"    // keys in JSON\r",
+							"    pm.expect(response_data).to.have.all.keys(\"_links\", \"category_name\", \"category_id\", \"created\", \"is_shown\",\r",
+							"        \"skills\");\r",
+							"    // nested keys\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\").that.is.a('string');\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\").that.is.a('string');\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\").that.is.a('string');\r",
+							"    // datatypes\r",
+							"    pm.expect(response_data.category_id).to.be.a(\"number\");\r",
+							"    pm.expect(response_data.category_name).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.created).to.be.a(\"string\");\r",
+							"    pm.expect(response_data.is_shown).to.be.oneOf([true, false]);\r",
+							"    pm.expect(response_data.skills).to.be.a(\"array\").that.is.empty;\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"// values\r",
+							"pm.test(\"Includes Values\", function() {\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.next\", pm.variables.get(\"NULL\"));\r",
+							"    pm.expect(response_data).to.have.nested.property(\"_links.previous\", pm.variables.get(\"api_categories\") + \"/\"+ pm.variables.get(\"category_name_2\"));\r",
+							"    pm.expect(response_data.category_name).to.eql(pm.variables.get(\"category_name\"));\r",
+							"    pm.expect(response_data.created).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$/);\r",
+							"    pm.expect(response_data.is_shown).to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "490469d2-d74f-4878-b4f8-abd857d90e0c",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"category_name\": \"{{category_name}}\"\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Creating a new category with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a category by name with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 200;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_delete_json\")));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/categories/{{category_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"categories",
+						"{{category_name}}"
+					]
+				},
+				"description": "Deleting a category by id with a valid admin token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting all skills by name no token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 404;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error_not_found\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills"
+					]
+				},
+				"description": "Getting all skills by name with no token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting a skill by name no token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 404;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error_not_found\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_name}}"
+					]
+				},
+				"description": "Getting a skill by name with no token."
+			},
+			"response": []
+		},
+		{
+			"name": "Getting a skill by id no token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
+						"exec": [
+							"const expected_status_code = 404;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be Unauthorized\", function() {",
+							"    pm.expect(response_data).to.have.property(\"error\", pm.variables.get(\"txt_error_not_found\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_id}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_id}}"
+					]
+				},
+				"description": "Getting a skill by name with no token."
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting a skill by name with valid admin token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
+						"exec": [
+							"const expected_status_code = 200;",
+							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"",
+							"const response_data = pm.response.json();",
+							"",
+							"pm.test(\"Response Should Be\", function() {",
+							"    pm.expect(response_data).to.eql(JSON.parse(pm.variables.get(\"response_delete_json\")));",
+							"});",
+							"",
+							"// cleanup",
+							"pm.environment.unset(\"category_id\");",
+							"pm.environment.unset(\"category_name\");",
+							"pm.environment.unset(\"is_shown\");",
+							"pm.environment.unset(\"category_id_2\");",
+							"pm.environment.unset(\"category_name_2\");",
+							"pm.environment.unset(\"is_shown_2\");",
+							"pm.environment.unset(\"skill_name\");",
+							"pm.environment.unset(\"skill_id\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{valid_token_admin}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/skills/{{skill_name}}",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"skills",
+						"{{skill_name}}"
+					]
+				},
+				"description": "Deleting a skill by name with a valid admin token."
+			},
+			"response": []
+		}
+	]
+}

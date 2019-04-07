@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>	
+    {% block head %}
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pavel Saman - Software Tester</title>
+	<meta name="description" content="This website is dedicated to what I do as a Software  Tester. You can find here what I like working with and what I plan on learning. Feel free to contact me." />
+	<meta name="keywords" content="testing, software testing, personal page, technology, skills, contact information" />
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+	<link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
+	<link rel="manifest" href="{{url_for('static', filename='site.webmanifest')}}">	
+	{% endblock head %}
+ </head>
+<body>      	
+	<div class="top"></div>
+	<div class="container">	
+		{% block content %}
+		<div class="row text-center">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<img src="{{url_for('static', filename='profile_pic.png')}}" class="img-thumbnail img-round" alt="Pavel Saman profile picture" />
+			</div>
+			<div class="col-md-4 text-right">
+				{% block user_authenticated %} {% endblock %}					
+			</div>		
+		</div>			
+		<div class="row text-center">
+			<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<h1 data-type="header" class="heading name">Pavel Saman</h1>
+					<p data-type="paragraph" class="paragraph">Here you can find a list of my skills</p>
+					{% block heading %} {% endblock %}	
+				</div>
+			<div class="col-md-4"></div>
+		</div>			   
+		<div class="row">
+			<div class="col-md-4"></div>
+				<div class="col-md-4">	
+					{% block add_form %}{% endblock %}
+				</div>
+			<div class="col-md-4"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+				<div class="col-md-4">	
+					{% block skills_categories %}{% endblock %}		
+				</div>
+			<div class="col-md-4"></div>
+		</div>
+		<footer class="page-footer font-small white footer">
+			<div class="footer-copyright text-center py-3">© 2019 Pavel Saman</div>
+		</footer>
+		{% endblock content %}
+	</div>
+</body>
+</html>

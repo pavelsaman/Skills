@@ -1,0 +1,112 @@
+** Settings ***
+Library     SeleniumLibrary
+Library     Screenshot
+Resource    ../Settings/keywords.txt
+
+*** Keywords ***
+Open Website
+    [Arguments]    ${browser}    ${url}
+    Open Browser    ${url}    browser=${browser}
+    Maximize Browser Window
+    Check Elements Present Not Logged
+    
+Scroll Into View and Capture Screenshot
+    [Arguments]    ${element}    ${screenshot_dir}
+    Screenshot.Set Screenshot Directory    ${screenshot_dir}
+    Scroll Element Into View    ${element} 
+    Take Screenshot  
+
+Capture Screenshot
+    Screenshot.Set Screenshot Directory    ${SCREENSHOT_DIR}
+    Scroll Element Into View    ${footer}
+    Take Screenshot
+
+Check Error Page Elements
+    Page Should Contain Element    ${txt_heading}    
+    Element Text Should Be    ${txt_heading}    ${ERROR_PAGE_TEXT_HEADING}    
+    Page Should Contain Element    ${lnk_error_page}
+    Click Element    ${lnk_error_page}  
+    Check Elements Present Not Logged      
+
+Log In With Facebook
+    Click Button    ${btn_facebook}
+    Wait Until Page Contains Element    ${footer} 
+    
+Log In With LinkedIn
+    Click Button    ${btn_linkedin}
+    Wait Until Page Contains Element    ${footer} 
+
+Go To Category
+    Click Button    ${btn_go_to_category}
+    Wait Until Element Is Visible    ${btn_go_back} 
+    Check Elements Present Logged In
+    Capture Screenshot
+
+Go Back From Category
+    Click Button    ${btn_go_back}
+    Wait Until Element Is Visible    ${btn_go_to_category} 
+    Check Elements Present Logged In
+    Capture Screenshot
+
+Check Elements Present Not Logged
+    Page Should Contain Element    ${footer}
+    Page Should Contain Element    ${profile_picture}
+    Page Should Contain Element    ${txt_name_heading}
+    Page Should Contain Element    ${txt_main_text_para}
+    Page Should Contain Button    ${btn_facebook}
+    Page Should Contain Button    ${btn_linkedin}
+    Page Should Not Contain Button    ${btn_delete}   
+    Page Should Not Contain Button    ${btn_log_out}  
+    Page Should Not Contain Element    ${txt_main_form_heading}
+    Page Should Not Contain Element    ${form}        
+
+Check Elements Present Logged In
+    Page Should Contain Element    ${footer}
+    Page Should Contain Element    ${form}
+    Page Should Contain Element    ${profile_picture} 
+    Page Should Contain Element    ${main_picture} 
+    Page Should Contain Element    ${txt_name_heading}
+    Page Should Contain Element    ${txt_main_text_para}    
+    Page Should Contain Element    ${txt_main_form_heading}      
+    Page Should Contain Button    ${btn_delete} 
+    Page Should Contain Button    ${btn_log_out}        
+ 
+Add Category
+    [Arguments]    ${cat_name}
+    Input Text    ${txt_new_category}    ${cat_name}
+    Click Button    ${btn_new_category}
+    Wait Until Element Is Visible    ${btn_go_to_category}
+    Screenshot.Set Screenshot Directory    ${screenshot_dir}
+    Take Screenshot
+
+Add All Categories
+    :FOR    ${cat}    IN   @{categories_valid}
+    \    Go To Category
+    \    Add Category    ${cat}
+
+Add Skill
+    [Arguments]    ${cat_name}    ${skill_name}
+    Input Text    ${txt_new_skill}    ${skill_name}
+    Select From List By Label    ${cmb_cat}    ${cat_name}
+    Click Button    ${btn_add_skill}
+    Wait Until Element Is Visible    ${btn_go_to_category}    
+    Table Column Should Contain    ${tbl_skills}    1    ${skill_name}    
+    Screenshot.Set Screenshot Directory    ${screenshot_dir}
+    Take Screenshot
+
+Add All Skills
+    :FOR    ${skill}    IN    @{skills_valid.keys()}
+    \    Add Skill    ${skill}    ${skills_valid['${skill}']}
+
+Delete Skill
+    [Arguments]    ${skill_name}
+    Click Button    name:${skill_name}
+    Wait Until Element Is Visible    ${btn_go_to_category}
+    Page Should Not Contain Button    name:${skill_name}    
+    Screenshot.Set Screenshot Directory    ${screenshot_dir}
+    Take Screenshot
+    
+Delete All Skills
+    :FOR    ${skill}    IN   @{skills_valid.keys()}
+    \    Delete Skill    ${skills_valid['${skill}']}
+    

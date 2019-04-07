@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block user_authenticated %}
+  <button id="facebook" class="btn btn-primary" type="button" onclick="window.location.href='{{url_for('auth.oauth_authorize', provider='facebook')}}'">Log in with Facebook</button>
+  <button id="linkedin" class="btn btn-primary" type="button" onclick="window.location.href='{{url_for('auth.oauth_authorize', provider='linkedin')}}'">Log in with LinkedIn</button>
+  {% for message in get_flashed_messages() %}
+   <p>{{ message }}</p>
+  {% endfor %}
+{% endblock user_authenticated %}
+
+{% block skills_categories %}
+ {% for row in result_set %}
+  {% if row.category_name %}
+   {% if row.skills|length > 0 %}
+    <h2 class="text-center">{{row.category_name}}</h2>
+    {% for s in row.skills %}
+     <table class="table w-100 text-center">
+         <tbody>
+             <tr>				
+				<td align="center">{{s.skill_name}}</td>
+             </tr>			 
+         </tbody>
+     </table>
+    {% endfor %}
+   {% endif %}
+  {% endif %}
+ {% endfor %}
+{% endblock skills_categories %}
