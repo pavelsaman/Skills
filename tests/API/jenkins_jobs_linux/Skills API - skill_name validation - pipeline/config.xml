@@ -20,6 +20,7 @@
 -e ~/py/flask/Skills/tests/API/&apos;Skills_API - localhost.postman_environment.json&apos; \
 -d ~/py/flask/Skills/tests/API/&apos;Skills - skill_name validation.data.json&apos; \
 --reporters cli,html,junit,htmlextra \
+--bail \
 --reporter-junit-export reports/Skills_collection_report.xml \
 --reporter-html-export reports/Skills_collection_report.html \
 --reporter-htmlextra-darkTheme \

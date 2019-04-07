@@ -19,6 +19,7 @@
       <command>newman run ~/py/flask/Skills/tests/API/&apos;Skills.postman_collection.json&apos; \
 -e ~/py/flask/Skills/tests/API/&apos;Skills_API - localhost.postman_environment.json&apos; \
 -n 1 --reporters cli,html,junit,htmlextra \
+--bail \
 --reporter-junit-export reports/Skills_collection_report.xml \
 --reporter-html-export reports/Skills_collection_report.html \
 --reporter-htmlextra-darkTheme \

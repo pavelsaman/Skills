@@ -13,12 +13,15 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>rm -rf reports/</command>
+      <command>#!/bin/bash
+rm -rf reports/</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>newman run ~/py/flask/Skills/tests/API/&apos;Skills - category_name validation.postman_collection.json&apos; \
+      <command>#!/bin/bash
+newman run ~/py/flask/Skills/tests/API/&apos;Skills - category_name validation.postman_collection.json&apos; \
 -e ~/py/flask/Skills/tests/API/&apos;Skills_API - localhost.postman_environment.json&apos; \
 -d ~/py/flask/Skills/tests/API/&apos;Skills - category_name validation.data.json&apos; \
+--bail \
 --reporters cli,html,junit,htmlextra \
 --reporter-junit-export reports/Skills_collection_report.xml \
 --reporter-html-export reports/Skills_collection_report.html \
