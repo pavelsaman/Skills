@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ed5c526c-e8ea-4396-98a1-bef471d49af3",
+		"_postman_id": "be492392-185d-49d4-8608-b1e83ee3e30e",
 		"name": "Skills",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -13,15 +13,7 @@
 					"script": {
 						"id": "757d142b-ce04-425d-925c-232325bae3b0",
 						"exec": [
-							"// status code 200\r",
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -36,6 +28,26 @@
 							"    pm.expect(response_data).to.have.nested.property(\"_links.self\", pm.variables.get(\"api_skills\"));\r",
 							"    pm.expect(response_data.items).to.be.an(\"array\").that.is.empty;\r",
 							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "01d560f0-7d3a-4234-a3dc-02bf2790c9ea",
+						"exec": [
+							"var common_tests = (status_code) => {",
+							"    pm.test(`Status Code Should Be ${status_code}`,  () => pm.response.to.have.status(status_code));",
+							"",
+							"    // headers - JSON",
+							"    pm.test(\"Header includes type JSON\", function () {",
+							"        pm.response.to.have.header(\"Content-Type\");",
+							"        pm.response.to.be.header(\"Content-Type\", \"application/json\")",
+							"    });",
+							"}",
+							"",
+							"pm.environment.set(\"common_tests\", common_tests.toString());"
 						],
 						"type": "text/javascript"
 					}
@@ -78,15 +90,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"// status code 200\r",
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -140,15 +144,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"// status code 200\r",
-							"const expected_status_code = 201;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(201);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -239,15 +235,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"// status code 400\r",
-							"const expected_status_code = 400;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(400);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -311,15 +299,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"// status code 400\r",
-							"const expected_status_code = 400;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(400);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -383,15 +363,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"// status code 400\r",
-							"const expected_status_code = 400;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(400);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -455,15 +427,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"// status code 400\r",
-							"const expected_status_code = 400;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(400);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -527,15 +491,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"// status code 400\r",
-							"const expected_status_code = 400;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(400);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -599,15 +555,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"// status code 400\r",
-							"const expected_status_code = 400;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(400);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -671,15 +619,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"// status code 401",
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
-							"// headers - JSON",
-							"pm.test(\"Header includes type JSON\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
-							"});",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -737,15 +677,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"// status code 401",
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
-							"// headers - JSON",
-							"pm.test(\"Header includes type JSON\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
-							"});",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -808,15 +740,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"// status code 401\r",
-							"const expected_status_code = 401;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(401);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -879,17 +803,9 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"// status code 400\r",
-							"const expected_status_code = 400;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
+							"eval(pm.variables.get(\"common_tests\"))(400);\r",
 							"\r",
 							"const response_data = pm.response.json()\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
 							"\r",
 							"// keys and datatypes\r",
 							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
@@ -964,15 +880,7 @@
 					"script": {
 						"id": "757d142b-ce04-425d-925c-232325bae3b0",
 						"exec": [
-							"// status code 200\r",
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -1048,15 +956,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"// status code 200\r",
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -1133,10 +1033,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"// status code 401",
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -1183,8 +1080,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -1231,9 +1127,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -1280,9 +1174,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -1329,9 +1221,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -1378,9 +1268,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -1427,14 +1315,7 @@
 					"script": {
 						"id": "757d142b-ce04-425d-925c-232325bae3b0",
 						"exec": [
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -1510,9 +1391,7 @@
 					"script": {
 						"id": "757d142b-ce04-425d-925c-232325bae3b0",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -1561,9 +1440,7 @@
 					"script": {
 						"id": "757d142b-ce04-425d-925c-232325bae3b0",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -1612,14 +1489,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -1696,8 +1566,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -1743,8 +1612,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -1790,9 +1658,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 200;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(200);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -1839,14 +1705,7 @@
 					"script": {
 						"id": "757d142b-ce04-425d-925c-232325bae3b0",
 						"exec": [
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -1903,14 +1762,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -1964,14 +1816,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 201;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(201);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -2062,14 +1907,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 201;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(201);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -2160,8 +1998,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 200;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(200);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -2208,14 +2045,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 201;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(201);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -2306,14 +2136,7 @@
 					"script": {
 						"id": "9a7459ee-6200-48ee-aa50-8d2509ea7d25",
 						"exec": [
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -2399,8 +2222,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 200;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(200);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -2447,8 +2269,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 200;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(200);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -2510,14 +2331,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 201;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(201);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -2607,14 +2421,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
-							"// headers - JSON",
-							"pm.test(\"Header includes type JSON\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
-							"});",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -2677,14 +2484,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
-							"// headers - JSON",
-							"pm.test(\"Header includes type JSON\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
-							"});",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -2747,14 +2547,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
-							"// headers - JSON",
-							"pm.test(\"Header includes type JSON\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
-							"});",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -2817,14 +2610,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 400;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
-							"// headers - JSON",
-							"pm.test(\"Header includes type JSON\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
-							"});",
+							"eval(pm.variables.get(\"common_tests\"))(400);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -2888,14 +2674,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 400;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
-							"// headers - JSON",
-							"pm.test(\"Header includes type JSON\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
-							"});",
+							"eval(pm.variables.get(\"common_tests\"))(400);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -2959,14 +2738,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 400;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
-							"// headers - JSON",
-							"pm.test(\"Header includes type JSON\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
-							"});",
+							"eval(pm.variables.get(\"common_tests\"))(400);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -3030,14 +2802,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 400;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
-							"// headers - JSON",
-							"pm.test(\"Header includes type JSON\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
-							"});",
+							"eval(pm.variables.get(\"common_tests\"))(400);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -3101,14 +2866,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 400;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
-							"// headers - JSON",
-							"pm.test(\"Header includes type JSON\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")",
-							"});",
+							"eval(pm.variables.get(\"common_tests\"))(400);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -3172,14 +2930,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -3252,14 +3003,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -3329,14 +3073,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 201;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(201);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -3426,14 +3163,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -3503,14 +3233,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 201;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(201);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -3599,14 +3322,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -3677,14 +3393,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -3756,14 +3465,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -3855,8 +3557,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 404;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(404);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -3896,8 +3597,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 404;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(404);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -3938,8 +3638,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 404;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(404);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -3980,8 +3679,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"",
 							"const response_data = pm.response.json();",
@@ -4029,9 +3727,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -4078,8 +3774,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -4126,9 +3821,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -4175,9 +3868,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -4224,9 +3915,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 401;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(401);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -4273,14 +3962,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 200;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -4372,9 +4054,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 400;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(400);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -4423,9 +4103,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 200;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(200);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -4472,14 +4150,7 @@
 					"script": {
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
-							"const expected_status_code = 201;\r",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));\r",
-							"\r",
-							"// headers - JSON\r",
-							"pm.test(\"Header includes type JSON\", function () {\r",
-							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"    pm.response.to.be.header(\"Content-Type\", \"application/json\")\r",
-							"});\r",
+							"eval(pm.variables.get(\"common_tests\"))(201);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
@@ -4566,9 +4237,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 200;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
-							"",
+							"eval(pm.variables.get(\"common_tests\"))(200);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -4615,8 +4284,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 404;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(404);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -4656,8 +4324,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 404;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(404);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -4698,8 +4365,7 @@
 					"script": {
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
-							"const expected_status_code = 404;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(404);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -4740,8 +4406,7 @@
 					"script": {
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
-							"const expected_status_code = 200;",
-							"pm.test(`Status Code Should Be ${expected_status_code}`,  () => pm.response.to.have.status(expected_status_code));",
+							"eval(pm.variables.get(\"common_tests\"))(200);",
 							"",
 							"const response_data = pm.response.json();",
 							"",
