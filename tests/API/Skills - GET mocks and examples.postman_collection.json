@@ -1,0 +1,1292 @@
+{
+	"info": {
+		"_postman_id": "7bf208ab-c88a-434b-b8a0-a2e359de2191",
+		"name": "Skills - GET mocks and examples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "skills",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_not_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/skills",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"skills"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "skills - one skill",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/skills",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"skills"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 Apr 2019 18:29:52 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_links\": {\n        \"self\": \"/api/skills\"\n    },\n    \"items\": [\n        {\n            \"_links\": {\n                \"next\": \"NaN\",\n                \"previous\": \"NaN\",\n                \"self\": \"/api/skills/IPv4\"\n            },\n            \"category_name\": \"Networking\",\n            \"created\": \"2019-04-10T18:23:09Z\",\n            \"is_shown\": true,\n            \"skill_id\": 353,\n            \"skill_name\": \"IPv4\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "skills - more skills",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/skills",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"skills"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 Apr 2019 18:29:52 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_links\": {\n        \"self\": \"/api/skills\"\n    },\n    \"items\": [\n        {\n            \"_links\": {\n                \"next\": \"/api/skills/IPv6\",\n                \"previous\": \"NaN\",\n                \"self\": \"/api/skills/IPv4\"\n            },\n            \"category_name\": \"Networking\",\n            \"created\": \"2019-04-10T18:23:09Z\",\n            \"is_shown\": true,\n            \"skill_id\": 353,\n            \"skill_name\": \"IPv4\"\n        },\n        {\n            \"_links\": {\n                \"next\": \"NaN\",\n                \"previous\": \"/api/skills/IPv4\",\n                \"self\": \"/api/skills/IPv6\"\n            },\n            \"category_name\": \"Networking\",\n            \"created\": \"2019-04-10T18:23:15Z\",\n            \"is_shown\": true,\n            \"skill_id\": 354,\n            \"skill_name\": \"IPv6\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "skills - unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{invalid_or_expired_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/skills",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"skills"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"Unauthorized\"\n}"
+				},
+				{
+					"name": "skills - empty",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/skills",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"skills"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 Apr 2019 18:29:52 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_links\": {\n        \"self\": \"/api/skills\"\n    },\n    \"items\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "skills/IPv4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_not_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/skills/IPv4",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"skills",
+						"IPv4"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "skills/IPv4 - empty",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/skills/IPv4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"skills",
+								"IPv4"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 Apr 2019 18:32:47 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Not Found\"\n}"
+				},
+				{
+					"name": "skills/IPv4 - unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{invalid_or_expired_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/skills/IPv4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"skills",
+								"IPv4"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"Unauthorized\"\n}"
+				},
+				{
+					"name": "skills/IPv4",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/skills/IPv4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"skills",
+								"IPv4"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 Apr 2019 18:32:47 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/skills/IPv4\"\n    },\n    \"category_name\": \"Networking\",\n    \"created\": \"2019-04-10T18:32:23Z\",\n    \"is_shown\": true,\n    \"skill_id\": 355,\n    \"skill_name\": \"IPv4\"\n}"
+				}
+			]
+		},
+		{
+			"name": "skills/1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_not_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/skills/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"skills",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "skills/1",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/skills/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"skills",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 Apr 2019 18:33:44 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/skills/IPv4\"\n    },\n    \"category_name\": \"Networking\",\n    \"created\": \"2019-04-10T18:32:23Z\",\n    \"is_shown\": true,\n    \"skill_id\": 1,\n    \"skill_name\": \"IPv4\"\n}"
+				},
+				{
+					"name": "skills/1 - unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{invalid_or_expired_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/skills/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"skills",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"Unauthorized\"\n}"
+				},
+				{
+					"name": "skills/1 - empty",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/skills/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"skills",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 Apr 2019 18:33:44 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Not Found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "categories",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_not_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/categories",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "categories - more with skills",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"_links\": {\n        \"self\": \"/api/categories\"\n    },\n    \"items\": [\n        {\n            \"_links\": {\n                \"next\": \"/api/categories/Scripting\",\n                \"previous\": \"NaN\",\n                \"self\": \"/api/categories/Networking\"\n            },\n            \"category_id\": 461,\n            \"category_name\": \"Networking\",\n            \"created\": \"2019-04-10T18:11:01Z\",\n            \"is_shown\": true,\n            \"skills\": [\n                \"IPv4\",\n                \"IPv6\"\n            ]\n        },\n        {\n            \"_links\": {\n                \"next\": \"NaN\",\n                \"previous\": \"/api/categories/Networking\",\n                \"self\": \"/api/categories/Scripting\"\n            },\n            \"category_id\": 462,\n            \"category_name\": \"Scripting\",\n            \"created\": \"2019-04-10T18:39:41Z\",\n            \"is_shown\": true,\n            \"skills\": []\n        }\n    ]\n}"
+				},
+				{
+					"name": "categories - empty",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"_links\": {\n        \"self\": \"/api/categories\"\n    },\n    \"items\": []\n}"
+				},
+				{
+					"name": "categories - unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{invalid_or_expired_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"Unauthorized\"\n}"
+				},
+				{
+					"name": "categories - more",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"_links\": {\n        \"self\": \"/api/categories\"\n    },\n    \"items\": [\n        {\n            \"_links\": {\n                \"next\": \"/api/categories/Scripting\",\n                \"previous\": \"NaN\",\n                \"self\": \"/api/categories/Networking\"\n            },\n            \"category_id\": 461,\n            \"category_name\": \"Networking\",\n            \"created\": \"2019-04-10T18:11:01Z\",\n            \"is_shown\": true,\n            \"skills\": []\n        },\n        {\n            \"_links\": {\n                \"next\": \"NaN\",\n                \"previous\": \"/api/categories/Networking\",\n                \"self\": \"/api/categories/Scripting\"\n            },\n            \"category_id\": 462,\n            \"category_name\": \"Scripting\",\n            \"created\": \"2019-04-10T18:39:41Z\",\n            \"is_shown\": true,\n            \"skills\": []\n        }\n    ]\n}"
+				},
+				{
+					"name": "categories - one",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\n    \"_links\": {\n        \"self\": \"/api/categories\"\n    },\n    \"items\": [\n        {\n            \"_links\": {\n                \"next\": \"NaN\",\n                \"previous\": \"NaN\",\n                \"self\": \"/api/categories/Networking\"\n            },\n            \"category_id\": 461,\n            \"category_name\": \"Networking\",\n            \"created\": \"2019-04-10T18:11:01Z\",\n            \"is_shown\": true,\n            \"skills\": []\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "categories/Scripting",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_not_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/categories/Scripting",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories",
+						"Scripting"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "categories/Scripting",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories/Networking",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories",
+								"Networking"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Scripting\"\n    },\n    \"category_id\": 463,\n    \"category_name\": \"Scripting\",\n    \"created\": \"2019-04-10T18:42:27Z\",\n    \"is_shown\": true,\n    \"skills\": []\n}"
+				},
+				{
+					"name": "categories/Scripting - unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{invalid_or_expired_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories/Scripting",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories",
+								"Scripting"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"Unauthorized\"\n}"
+				},
+				{
+					"name": "categories/Scripting - empty",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories/Networking",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories",
+								"Networking"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"Not Found\"\n}"
+				},
+				{
+					"name": "categories/Scripting - with skills",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories/Networking",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories",
+								"Networking"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Scripting\"\n    },\n    \"category_id\": 463,\n    \"category_name\": \"Scripting\",\n    \"created\": \"2019-04-10T18:42:27Z\",\n    \"is_shown\": true,\n    \"skills\": [\n        \"Bash\"\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "categories/464",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_token_not_admin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/categories/464",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories",
+						"464"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "categories/464",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories/464",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories",
+								"464"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Scripting\"\n    },\n    \"category_id\": 464,\n    \"category_name\": \"Scripting\",\n    \"created\": \"2019-04-10T18:46:15Z\",\n    \"is_shown\": true,\n    \"skills\": []\n}"
+				},
+				{
+					"name": "categories/464 - with skills",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Scripting\"\n    },\n    \"category_id\": 464,\n    \"category_name\": \"Scripting\",\n    \"created\": \"2019-04-10T18:46:15Z\",\n    \"is_shown\": true,\n    \"skills\": [\n        \"Bash\"\n    ]\n}"
+				},
+				{
+					"name": "categories/464 - unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{invalid_or_expired_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories/464",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories",
+								"464"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"Unauthorized\"\n}"
+				},
+				{
+					"name": "categories/464 - empty",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"Not Found\"\n}"
+				}
+			]
+		}
+	]
+}
