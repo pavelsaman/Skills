@@ -1,0 +1,615 @@
+{
+	"info": {
+		"_postman_id": "228f7782-fbf6-4ea2-9d75-9d85f9034687",
+		"name": "Skills - DELETE mocks and examples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "skills/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_admin_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url_delete}}/skills/1",
+					"host": [
+						"{{url_delete}}"
+					],
+					"path": [
+						"skills",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "skills/1 - successful deletion",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_delete}}/skills/1",
+							"host": [
+								"{{url_delete}}"
+							],
+							"path": [
+								"skills",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"response\": \"OK\"\n}"
+				},
+				{
+					"name": "skills/1 - no skill",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_delete}}/skills/1",
+							"host": [
+								"{{url_delete}}"
+							],
+							"path": [
+								"skills",
+								"1"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"Skill cannot be deleted. Check its name again.\"\n}"
+				},
+				{
+					"name": "skills/1 - invalid, expired or not admin token",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{invalid_or_expired_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_delete}}/skills/1",
+							"host": [
+								"{{url_delete}}"
+							],
+							"path": [
+								"skills",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Unauthorized\"\n}"
+				}
+			]
+		},
+		{
+			"name": "skills/IPv4",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_admin_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url_delete}}/skills/IPv4",
+					"host": [
+						"{{url_delete}}"
+					],
+					"path": [
+						"skills",
+						"IPv4"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "skills/IPv4 - invalid, expired or not admin token",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{invalid_or_expired_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_delete}}/skills/IPv4",
+							"host": [
+								"{{url_delete}}"
+							],
+							"path": [
+								"skills",
+								"IPv4"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Unauthorized\"\n}"
+				},
+				{
+					"name": "skills/IPv4 - successful deletion",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_delete}}/skills/IPv4",
+							"host": [
+								"{{url_delete}}"
+							],
+							"path": [
+								"skills",
+								"IPv4"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"response\": \"OK\"\n}"
+				},
+				{
+					"name": "skills/IPv4 - no skill",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_delete}}/skills/IPv4",
+							"host": [
+								"{{url_delete}}"
+							],
+							"path": [
+								"skills",
+								"IPv4"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"Skill cannot be deleted. Check its name again.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "categories/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_admin_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url_delete}}/categories/1",
+					"host": [
+						"{{url_delete}}"
+					],
+					"path": [
+						"categories",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "categories/1 - invalid, expired or not admin token",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_delete}}/categories/1",
+							"host": [
+								"{{url_delete}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Unauthorized\"\n}"
+				}
+			]
+		},
+		{
+			"name": "categories/Networking",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{valid_admin_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url_delete}}/categories/Networking",
+					"host": [
+						"{{url_delete}}"
+					],
+					"path": [
+						"categories",
+						"Networking"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/categories/Networking",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories",
+								"Networking"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "categories/Networking - invalid, expired or not admin token",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_token_not_admin}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_delete}}/categories/Networking",
+							"host": [
+								"{{url_delete}}"
+							],
+							"path": [
+								"categories",
+								"Networking"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Unauthorized\"\n}"
+				}
+			]
+		}
+	]
+}
