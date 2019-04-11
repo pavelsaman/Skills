@@ -91,7 +91,7 @@
 					"body": "{\n    \"response\": \"OK\"\n}"
 				},
 				{
-					"name": "skills/1 - no skill",
+					"name": "skills/2 - no skill",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [
@@ -106,13 +106,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url_delete}}/skills/1",
+							"raw": "{{url_delete}}/skills/2",
 							"host": [
 								"{{url_delete}}"
 							],
 							"path": [
 								"skills",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -149,7 +149,7 @@
 					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"Skill cannot be deleted. Check its name again.\"\n}"
 				},
 				{
-					"name": "skills/1 - invalid, expired or not admin token",
+					"name": "skills/3 - invalid, expired or not admin token",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [
@@ -164,13 +164,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url_delete}}/skills/1",
+							"raw": "{{url_delete}}/skills/3",
 							"host": [
 								"{{url_delete}}"
 							],
 							"path": [
 								"skills",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -236,7 +236,7 @@
 			},
 			"response": [
 				{
-					"name": "skills/IPv4 - invalid, expired or not admin token",
+					"name": "skills/IPv6 - invalid, expired or not admin token",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [
@@ -251,13 +251,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url_delete}}/skills/IPv4",
+							"raw": "{{url_delete}}/skills/IPv6",
 							"host": [
 								"{{url_delete}}"
 							],
 							"path": [
 								"skills",
-								"IPv4"
+								"IPv6"
 							]
 						}
 					},
@@ -352,7 +352,7 @@
 					"body": "{\n    \"response\": \"OK\"\n}"
 				},
 				{
-					"name": "skills/IPv4 - no skill",
+					"name": "skills/IPv8 - no skill",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [
@@ -367,13 +367,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url_delete}}/skills/IPv4",
+							"raw": "{{url_delete}}/skills/IPv8",
 							"host": [
 								"{{url_delete}}"
 							],
 							"path": [
 								"skills",
-								"IPv4"
+								"IPv8"
 							]
 						}
 					},
@@ -439,7 +439,7 @@
 			},
 			"response": [
 				{
-					"name": "categories/1 - not empty",
+					"name": "categories/2 - not empty",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [
@@ -454,13 +454,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url_delete}}/categories/1",
+							"raw": "{{url_delete}}/categories/2",
 							"host": [
 								"{{url_delete}}"
 							],
 							"path": [
 								"categories",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -555,7 +555,7 @@
 					"body": "{\n    \"response\": \"OK\"\n}"
 				},
 				{
-					"name": "categories/1 - invalid, expired or not admin token",
+					"name": "categories/3 - invalid, expired or not admin token",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [
@@ -570,13 +570,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url_delete}}/categories/1",
+							"raw": "{{url_delete}}/categories/3",
 							"host": [
 								"{{url_delete}}"
 							],
 							"path": [
 								"categories",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -613,7 +613,7 @@
 					"body": "{\n    \"error\": \"Unauthorized\"\n}"
 				},
 				{
-					"name": "categories/1 - no category",
+					"name": "categories/4 - no category",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [
@@ -628,13 +628,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url_delete}}/categories/1",
+							"raw": "{{url_delete}}/categories/4",
 							"host": [
 								"{{url_delete}}"
 							],
 							"path": [
 								"categories",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -758,7 +758,7 @@
 					"body": "{\n    \"response\": \"OK\"\n}"
 				},
 				{
-					"name": "categories/Networking - no category",
+					"name": "categories/Net - no category",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [
@@ -773,13 +773,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url_delete}}/categories/Networking",
+							"raw": "{{url_delete}}/categories/Net",
 							"host": [
 								"{{url_delete}}"
 							],
 							"path": [
 								"categories",
-								"Networking"
+								"Net"
 							]
 						}
 					},
@@ -816,7 +816,7 @@
 					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"Category cannot be deleted. Check its name again and that the category is empty.\"\n}"
 				},
 				{
-					"name": "categories/Networking - not empty",
+					"name": "categories/Programming- not empty",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [
@@ -831,13 +831,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url_delete}}/categories/Networking",
+							"raw": "{{url_delete}}/categories/Programming",
 							"host": [
 								"{{url_delete}}"
 							],
 							"path": [
 								"categories",
-								"Networking"
+								"Programming"
 							]
 						}
 					},
@@ -874,7 +874,7 @@
 					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"Category cannot be deleted. Check its name again and that the category is empty.\"\n}"
 				},
 				{
-					"name": "categories/Networking - invalid, expired or not admin token",
+					"name": "categories/Scripting- invalid, expired or not admin token",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [
@@ -889,13 +889,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url_delete}}/categories/Networking",
+							"raw": "{{url_delete}}/categories/Scripting",
 							"host": [
 								"{{url_delete}}"
 							],
 							"path": [
 								"categories",
-								"Networking"
+								"Scripting"
 							]
 						}
 					},
