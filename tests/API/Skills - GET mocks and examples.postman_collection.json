@@ -64,52 +64,24 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Headers",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Methods",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Access-Control-Expose-Headers",
-							"value": ""
-						},
-						{
 							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
-						},
-						{
-							"key": "Date",
-							"value": "Wed, 10 Apr 2019 18:29:52 GMT"
-						},
-						{
-							"key": "ETag",
-							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
-						},
-						{
-							"key": "Server",
-							"value": "nginx"
-						},
-						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
+							"value": "application/json"
 						},
 						{
 							"key": "Content-Length",
 							"value": "0"
 						},
 						{
-							"key": "Connection",
-							"value": "keep-alive"
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
 						}
 					],
 					"cookie": [],
@@ -145,52 +117,20 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Headers",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Methods",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Access-Control-Expose-Headers",
-							"value": ""
-						},
-						{
 							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
+							"value": "application/json"
 						},
 						{
 							"key": "Date",
 							"value": "Wed, 10 Apr 2019 18:29:52 GMT"
 						},
 						{
-							"key": "ETag",
-							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
-						},
-						{
 							"key": "Server",
 							"value": "nginx"
 						},
 						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
 							"key": "Content-Length",
 							"value": "0"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
 						}
 					],
 					"cookie": [],
@@ -224,7 +164,32 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"error\": \"Unauthorized\"\n}"
 				},
@@ -258,52 +223,20 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Headers",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Methods",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Access-Control-Expose-Headers",
-							"value": ""
-						},
-						{
 							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
+							"value": "application/json"
 						},
 						{
 							"key": "Date",
 							"value": "Wed, 10 Apr 2019 18:29:52 GMT"
 						},
 						{
-							"key": "ETag",
-							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
-						},
-						{
 							"key": "Server",
 							"value": "nginx"
 						},
 						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
 							"key": "Content-Length",
 							"value": "0"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
 						}
 					],
 					"cookie": [],
@@ -372,26 +305,6 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Headers",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Methods",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Access-Control-Expose-Headers",
-							"value": ""
-						},
-						{
 							"key": "Content-Type",
 							"value": "text/html; charset=utf-8"
 						},
@@ -400,24 +313,12 @@
 							"value": "Wed, 10 Apr 2019 18:32:47 GMT"
 						},
 						{
-							"key": "ETag",
-							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
-						},
-						{
 							"key": "Server",
 							"value": "nginx"
 						},
 						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
 							"key": "Content-Length",
 							"value": "0"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
 						}
 					],
 					"cookie": [],
@@ -452,7 +353,32 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"error\": \"Unauthorized\"\n}"
 				},
@@ -487,26 +413,6 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Headers",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Methods",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Access-Control-Expose-Headers",
-							"value": ""
-						},
-						{
 							"key": "Content-Type",
 							"value": "text/html; charset=utf-8"
 						},
@@ -515,24 +421,12 @@
 							"value": "Wed, 10 Apr 2019 18:32:47 GMT"
 						},
 						{
-							"key": "ETag",
-							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
-						},
-						{
 							"key": "Server",
 							"value": "nginx"
 						},
 						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
 							"key": "Content-Length",
 							"value": "0"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
 						}
 					],
 					"cookie": [],
@@ -601,26 +495,6 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Headers",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Methods",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Access-Control-Expose-Headers",
-							"value": ""
-						},
-						{
 							"key": "Content-Type",
 							"value": "text/html; charset=utf-8"
 						},
@@ -629,24 +503,12 @@
 							"value": "Wed, 10 Apr 2019 18:33:44 GMT"
 						},
 						{
-							"key": "ETag",
-							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
-						},
-						{
 							"key": "Server",
 							"value": "nginx"
 						},
 						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
 							"key": "Content-Length",
 							"value": "0"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
 						}
 					],
 					"cookie": [],
@@ -681,7 +543,32 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"error\": \"Unauthorized\"\n}"
 				},
@@ -716,26 +603,6 @@
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
-							"key": "Access-Control-Allow-Credentials",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Headers",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Methods",
-							"value": ""
-						},
-						{
-							"key": "Access-Control-Allow-Origin",
-							"value": "*"
-						},
-						{
-							"key": "Access-Control-Expose-Headers",
-							"value": ""
-						},
-						{
 							"key": "Content-Type",
 							"value": "text/html; charset=utf-8"
 						},
@@ -744,24 +611,12 @@
 							"value": "Wed, 10 Apr 2019 18:33:44 GMT"
 						},
 						{
-							"key": "ETag",
-							"value": "W/\"0-1B2M2Y8AsgTpgAmY7PhCfg\""
-						},
-						{
 							"key": "Server",
 							"value": "nginx"
 						},
 						{
-							"key": "Vary",
-							"value": "Accept-Encoding"
-						},
-						{
 							"key": "Content-Length",
 							"value": "0"
-						},
-						{
-							"key": "Connection",
-							"value": "keep-alive"
 						}
 					],
 					"cookie": [],
@@ -826,7 +681,32 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
-					"header": [],
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Type",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"_links\": {\n        \"self\": \"/api/categories\"\n    },\n    \"items\": [\n        {\n            \"_links\": {\n                \"next\": \"/api/categories/Scripting\",\n                \"previous\": \"NaN\",\n                \"self\": \"/api/categories/Networking\"\n            },\n            \"category_id\": 461,\n            \"category_name\": \"Networking\",\n            \"created\": \"2019-04-10T18:11:01Z\",\n            \"is_shown\": true,\n            \"skills\": [\n                \"IPv4\",\n                \"IPv6\"\n            ]\n        },\n        {\n            \"_links\": {\n                \"next\": \"NaN\",\n                \"previous\": \"/api/categories/Networking\",\n                \"self\": \"/api/categories/Scripting\"\n            },\n            \"category_id\": 462,\n            \"category_name\": \"Scripting\",\n            \"created\": \"2019-04-10T18:39:41Z\",\n            \"is_shown\": true,\n            \"skills\": []\n        }\n    ]\n}"
 				},
@@ -858,7 +738,32 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
-					"header": [],
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"_links\": {\n        \"self\": \"/api/categories\"\n    },\n    \"items\": []\n}"
 				},
@@ -890,7 +795,32 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"error\": \"Unauthorized\"\n}"
 				},
@@ -922,7 +852,32 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
-					"header": [],
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"_links\": {\n        \"self\": \"/api/categories\"\n    },\n    \"items\": [\n        {\n            \"_links\": {\n                \"next\": \"/api/categories/Scripting\",\n                \"previous\": \"NaN\",\n                \"self\": \"/api/categories/Networking\"\n            },\n            \"category_id\": 461,\n            \"category_name\": \"Networking\",\n            \"created\": \"2019-04-10T18:11:01Z\",\n            \"is_shown\": true,\n            \"skills\": []\n        },\n        {\n            \"_links\": {\n                \"next\": \"NaN\",\n                \"previous\": \"/api/categories/Networking\",\n                \"self\": \"/api/categories/Scripting\"\n            },\n            \"category_id\": 462,\n            \"category_name\": \"Scripting\",\n            \"created\": \"2019-04-10T18:39:41Z\",\n            \"is_shown\": true,\n            \"skills\": []\n        }\n    ]\n}"
 				},
@@ -954,7 +909,32 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
-					"header": [],
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"_links\": {\n        \"self\": \"/api/categories\"\n    },\n    \"items\": [\n        {\n            \"_links\": {\n                \"next\": \"NaN\",\n                \"previous\": \"NaN\",\n                \"self\": \"/api/categories/Networking\"\n            },\n            \"category_id\": 461,\n            \"category_name\": \"Networking\",\n            \"created\": \"2019-04-10T18:11:01Z\",\n            \"is_shown\": true,\n            \"skills\": []\n        }\n    ]\n}"
 				}
@@ -1006,20 +986,45 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/categories/Networking",
+							"raw": "{{url}}/categories/Scripting",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"categories",
-								"Networking"
+								"Scripting"
 							]
 						}
 					},
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Scripting\"\n    },\n    \"category_id\": 463,\n    \"category_name\": \"Scripting\",\n    \"created\": \"2019-04-10T18:42:27Z\",\n    \"is_shown\": true,\n    \"skills\": []\n}"
 				},
@@ -1052,7 +1057,32 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"error\": \"Unauthorized\"\n}"
 				},
@@ -1072,20 +1102,45 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/categories/Networking",
+							"raw": "{{url}}/categories/Scripting",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"categories",
-								"Networking"
+								"Scripting"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"error\": \"Not Found\"\n}"
 				},
@@ -1105,20 +1160,45 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/categories/Networking",
+							"raw": "{{url}}/categories/Scripting",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"categories",
-								"Networking"
+								"Scripting"
 							]
 						}
 					},
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Scripting\"\n    },\n    \"category_id\": 463,\n    \"category_name\": \"Scripting\",\n    \"created\": \"2019-04-10T18:42:27Z\",\n    \"is_shown\": true,\n    \"skills\": [\n        \"Bash\"\n    ]\n}"
 				}
@@ -1183,7 +1263,32 @@
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Scripting\"\n    },\n    \"category_id\": 464,\n    \"category_name\": \"Scripting\",\n    \"created\": \"2019-04-10T18:46:15Z\",\n    \"is_shown\": true,\n    \"skills\": []\n}"
 				},
@@ -1203,20 +1308,45 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/categories/1",
+							"raw": "{{url}}/categories/464",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"categories",
-								"1"
+								"464"
 							]
 						}
 					},
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Scripting\"\n    },\n    \"category_id\": 464,\n    \"category_name\": \"Scripting\",\n    \"created\": \"2019-04-10T18:46:15Z\",\n    \"is_shown\": true,\n    \"skills\": [\n        \"Bash\"\n    ]\n}"
 				},
@@ -1249,7 +1379,32 @@
 					"status": "Unauthorized",
 					"code": 401,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"error\": \"Unauthorized\"\n}"
 				},
@@ -1269,20 +1424,45 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/categories/1",
+							"raw": "{{url}}/categories/464",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"categories",
-								"1"
+								"464"
 							]
 						}
 					},
 					"status": "Not Found",
 					"code": 404,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": "{\n    \"error\": \"Not Found\"\n}"
 				}
