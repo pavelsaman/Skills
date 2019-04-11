@@ -439,6 +439,122 @@
 			},
 			"response": [
 				{
+					"name": "categories/1 - not empty",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_delete}}/categories/1",
+							"host": [
+								"{{url_delete}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"error\": \"Bad Request\",\n\t\"message\": \"Category cannot be deleted. Check its name again and that the category is empty.\"\n}"
+				},
+				{
+					"name": "categories/1 - successful deletion",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_delete}}/categories/1",
+							"host": [
+								"{{url_delete}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"response\": \"OK\"\n}"
+				},
+				{
 					"name": "categories/1 - invalid, expired or not admin token",
 					"originalRequest": {
 						"method": "DELETE",
@@ -495,6 +611,64 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"error\": \"Unauthorized\"\n}"
+				},
+				{
+					"name": "categories/1 - no category",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_delete}}/categories/1",
+							"host": [
+								"{{url_delete}}"
+							],
+							"path": [
+								"categories",
+								"1"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"Category cannot be deleted. Check its name again and that the category is empty.\"\n}"
 				}
 			]
 		},
@@ -526,18 +700,24 @@
 			},
 			"response": [
 				{
-					"name": "Default",
+					"name": "categories/Networking - successful deletion",
 					"originalRequest": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/categories/Networking",
+							"raw": "{{url_delete}}/categories/Networking",
 							"host": [
-								"{{url}}"
+								"{{url_delete}}"
 							],
 							"path": [
 								"categories",
@@ -545,11 +725,153 @@
 							]
 						}
 					},
+					"status": "OK",
 					"code": 200,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": ""
+					"body": "{\n    \"response\": \"OK\"\n}"
+				},
+				{
+					"name": "categories/Networking - no category",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_delete}}/categories/Networking",
+							"host": [
+								"{{url_delete}}"
+							],
+							"path": [
+								"categories",
+								"Networking"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"Category cannot be deleted. Check its name again and that the category is empty.\"\n}"
+				},
+				{
+					"name": "categories/Networking - not empty",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url_delete}}/categories/Networking",
+							"host": [
+								"{{url_delete}}"
+							],
+							"path": [
+								"categories",
+								"Networking"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"Category cannot be deleted. Check its name again and that the category is empty.\"\n}"
 				},
 				{
 					"name": "categories/Networking - invalid, expired or not admin token",
