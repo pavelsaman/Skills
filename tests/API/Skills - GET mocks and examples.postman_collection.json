@@ -24,9 +24,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}/skills",
+					"raw": "{{url_get}}/skills",
 					"host": [
-						"{{url}}"
+						"{{url_get}}"
 					],
 					"path": [
 						"skills"
@@ -263,9 +263,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}/skills/IPv4",
+					"raw": "{{url_get}}/skills/IPv4",
 					"host": [
-						"{{url}}"
+						"{{url_get}}"
 					],
 					"path": [
 						"skills",
@@ -275,7 +275,7 @@
 			},
 			"response": [
 				{
-					"name": "skills/IPv4 - empty",
+					"name": "skills/IP - empty",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -290,13 +290,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/skills/IPv4",
+							"raw": "{{url}}/skills/IP",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"skills",
-								"IPv4"
+								"IP"
 							]
 						}
 					},
@@ -325,7 +325,7 @@
 					"body": "{\n    \"error\": \"Not Found\"\n}"
 				},
 				{
-					"name": "skills/IPv4 - unauthorized",
+					"name": "skills/IPv6 - unauthorized",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -340,13 +340,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/skills/IPv4",
+							"raw": "{{url}}/skills/IPv6",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"skills",
-								"IPv4"
+								"IPv6"
 							]
 						}
 					},
@@ -453,9 +453,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}/skills/1",
+					"raw": "{{url_get}}/skills/1",
 					"host": [
-						"{{url}}"
+						"{{url_get}}"
 					],
 					"path": [
 						"skills",
@@ -515,7 +515,7 @@
 					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/skills/IPv4\"\n    },\n    \"category_name\": \"Networking\",\n    \"created\": \"2019-04-10T18:32:23Z\",\n    \"is_shown\": true,\n    \"skill_id\": 1,\n    \"skill_name\": \"IPv4\"\n}"
 				},
 				{
-					"name": "skills/1 - unauthorized",
+					"name": "skills/2 - unauthorized",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -530,13 +530,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/skills/1",
+							"raw": "{{url}}/skills/2",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"skills",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -573,7 +573,7 @@
 					"body": "{\n    \"error\": \"Unauthorized\"\n}"
 				},
 				{
-					"name": "skills/1 - empty",
+					"name": "skills/3 - empty",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -588,13 +588,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/skills/1",
+							"raw": "{{url}}/skills/3",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"skills",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -643,9 +643,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}/categories",
+					"raw": "{{url_get}}/categories",
 					"host": [
-						"{{url}}"
+						"{{url_get}}"
 					],
 					"path": [
 						"categories"
@@ -959,9 +959,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}/categories/Scripting",
+					"raw": "{{url_get}}/categories/Scripting",
 					"host": [
-						"{{url}}"
+						"{{url_get}}"
 					],
 					"path": [
 						"categories",
@@ -1029,7 +1029,7 @@
 					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Scripting\"\n    },\n    \"category_id\": 463,\n    \"category_name\": \"Scripting\",\n    \"created\": \"2019-04-10T18:42:27Z\",\n    \"is_shown\": true,\n    \"skills\": []\n}"
 				},
 				{
-					"name": "categories/Scripting - unauthorized",
+					"name": "categories/Baking - unauthorized",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -1044,13 +1044,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/categories/Scripting",
+							"raw": "{{url}}/categories/Baking",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"categories",
-								"Scripting"
+								"Baking"
 							]
 						}
 					},
@@ -1087,7 +1087,7 @@
 					"body": "{\n    \"error\": \"Unauthorized\"\n}"
 				},
 				{
-					"name": "categories/Scripting - empty",
+					"name": "categories/Sc - empty",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -1102,13 +1102,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/categories/Scripting",
+							"raw": "{{url}}/categories/Sc",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"categories",
-								"Scripting"
+								"Sc"
 							]
 						}
 					},
@@ -1145,7 +1145,7 @@
 					"body": "{\n    \"error\": \"Not Found\"\n}"
 				},
 				{
-					"name": "categories/Scripting - with skills",
+					"name": "categories/Programming - with skills",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -1160,13 +1160,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/categories/Scripting",
+							"raw": "{{url}}/categories/Programming",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"categories",
-								"Scripting"
+								"Programming"
 							]
 						}
 					},
@@ -1200,7 +1200,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Scripting\"\n    },\n    \"category_id\": 463,\n    \"category_name\": \"Scripting\",\n    \"created\": \"2019-04-10T18:42:27Z\",\n    \"is_shown\": true,\n    \"skills\": [\n        \"Bash\"\n    ]\n}"
+					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Programming\"\n    },\n    \"category_id\": 464,\n    \"category_name\": \"Programming\",\n    \"created\": \"2019-04-10T18:42:27Z\",\n    \"is_shown\": true,\n    \"skills\": [\n        \"Bash\"\n    ]\n}"
 				}
 			]
 		},
@@ -1223,9 +1223,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}/categories/464",
+					"raw": "{{url_get}}/categories/464",
 					"host": [
-						"{{url}}"
+						"{{url_get}}"
 					],
 					"path": [
 						"categories",
@@ -1293,7 +1293,7 @@
 					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Scripting\"\n    },\n    \"category_id\": 464,\n    \"category_name\": \"Scripting\",\n    \"created\": \"2019-04-10T18:46:15Z\",\n    \"is_shown\": true,\n    \"skills\": []\n}"
 				},
 				{
-					"name": "categories/464 - with skills",
+					"name": "categories/465 - with skills",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -1308,13 +1308,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/categories/464",
+							"raw": "{{url}}/categories/465",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"categories",
-								"464"
+								"465"
 							]
 						}
 					},
@@ -1348,10 +1348,10 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Scripting\"\n    },\n    \"category_id\": 464,\n    \"category_name\": \"Scripting\",\n    \"created\": \"2019-04-10T18:46:15Z\",\n    \"is_shown\": true,\n    \"skills\": [\n        \"Bash\"\n    ]\n}"
+					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Programming\"\n    },\n    \"category_id\": 465,\n    \"category_name\": \"Programming\",\n    \"created\": \"2019-04-10T18:46:15Z\",\n    \"is_shown\": true,\n    \"skills\": [\n        \"Bash\"\n    ]\n}"
 				},
 				{
-					"name": "categories/464 - unauthorized",
+					"name": "categories/466 - unauthorized",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -1366,13 +1366,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/categories/464",
+							"raw": "{{url}}/categories/466",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"categories",
-								"464"
+								"466"
 							]
 						}
 					},
@@ -1409,7 +1409,7 @@
 					"body": "{\n    \"error\": \"Unauthorized\"\n}"
 				},
 				{
-					"name": "categories/464 - empty",
+					"name": "categories/467 - empty",
 					"originalRequest": {
 						"method": "GET",
 						"header": [
@@ -1424,13 +1424,13 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/categories/464",
+							"raw": "{{url}}/categories/467",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"categories",
-								"464"
+								"467"
 							]
 						}
 					},
