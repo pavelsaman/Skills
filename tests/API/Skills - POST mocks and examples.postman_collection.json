@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "2cfc25aa-c637-42ca-bb92-d08cf95043be",
 		"name": "Skills - POST mocks and examples",
+		"description": "This won't really work at this point because of https://learning.getpostman.com/docs/postman/mock_servers/matching_algorithm/. So request bodies are not taken into account at this point.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -14,11 +15,17 @@
 						"key": "Authorization",
 						"value": "{{valid_admin_token}}",
 						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"skill_name\": \"Python\",\n\t\"category_name\": \"Programming\",\n\t\"is_shown\": true\n}"
 				},
 				"url": {
 					"raw": "{{url_post}}/skills",
@@ -32,6 +39,281 @@
 			},
 			"response": [
 				{
+					"name": "skills - not enough params, no skill",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category_name\": \"Programming\"\n}"
+						},
+						"url": {
+							"raw": "{{url_post}}/skills",
+							"host": [
+								"{{url_post}}"
+							],
+							"path": [
+								"skills"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Apr 2019 07:04:42 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						},
+						{
+							"key": "Content-Length",
+							"value": "258"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"This format is not allowed.\"\n}"
+				},
+				{
+					"name": "skills - category name too short or special characters in it",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"skill_name\": \"Python\",\n\t\"category_name\": \"P\",\n\t\"is_shown\": true\n}"
+						},
+						"url": {
+							"raw": "{{url_post}}/skills",
+							"host": [
+								"{{url_post}}"
+							],
+							"path": [
+								"skills"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Apr 2019 07:04:42 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						},
+						{
+							"key": "Content-Length",
+							"value": "258"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"Category name not allowed.\"\n}"
+				},
+				{
+					"name": "skills - skill name too short or special characters in it",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"skill_name\": \"P\",\n\t\"category_name\": \"Programming\",\n\t\"is_shown\": true\n}"
+						},
+						"url": {
+							"raw": "{{url_post}}/skills",
+							"host": [
+								"{{url_post}}"
+							],
+							"path": [
+								"skills"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Apr 2019 07:04:42 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						},
+						{
+							"key": "Content-Length",
+							"value": "258"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"Skill name not allowed.\"\n}"
+				},
+				{
+					"name": "skills - invalid, expired or not admin token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{invalid_or_expired_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"skill_name\": \"Bash\",\n\t\"category_name\": \"Scripting\",\n\t\"is_shown\": false\n}"
+						},
+						"url": {
+							"raw": "{{url_post}}/skills",
+							"host": [
+								"{{url_post}}"
+							],
+							"path": [
+								"skills"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Apr 2019 07:04:42 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						},
+						{
+							"key": "Content-Length",
+							"value": "258"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Unauthorized\"\n}"
+				},
+				{
+					"name": "skills - is_shown wrong format",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"skill_name\": \"123\",\n\t\"category_name\": \"Scripting\",\n\t\"is_shown\": \"1\"\n}"
+						},
+						"url": {
+							"raw": "{{url_post}}/skills",
+							"host": [
+								"{{url_post}}"
+							],
+							"path": [
+								"skills"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Apr 2019 07:04:42 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						},
+						{
+							"key": "Content-Length",
+							"value": "258"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"This format is not allowed.\"\n}"
+				},
+				{
 					"name": "skills - successful addition",
 					"originalRequest": {
 						"method": "POST",
@@ -40,11 +322,17 @@
 								"key": "Authorization",
 								"value": "{{valid_admin_token}}",
 								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"skill_name\": \"Python\",\n\t\"category_name\": \"Programming\",\n\t\"is_shown\": true\n}"
 						},
 						"url": {
 							"raw": "{{url_post}}/skills",
@@ -58,13 +346,38 @@
 					},
 					"status": "Created",
 					"code": 201,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": null
+					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/skills/Python\"\n    },\n    \"category_name\": \"Programming\",\n    \"created\": \"2019-04-12T07:00:16Z\",\n    \"is_shown\": true,\n    \"skill_id\": 362,\n    \"skill_name\": \"Python\"\n}"
 				},
 				{
-					"name": "skills - invalid, expired or not admin token",
+					"name": "skills - not enough params, no category",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
@@ -72,11 +385,17 @@
 								"key": "Authorization",
 								"value": "{{valid_admin_token}}",
 								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"skill_name\": \"IP\"\n}"
 						},
 						"url": {
 							"raw": "{{url_post}}/skills",
@@ -88,13 +407,32 @@
 							]
 						}
 					},
-					"_postman_previewlanguage": null,
-					"header": null,
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Apr 2019 07:04:42 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						},
+						{
+							"key": "Content-Length",
+							"value": "258"
+						}
+					],
 					"cookie": [],
-					"body": null
+					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"This format is not allowed.\"\n}"
 				},
 				{
-					"name": "skills - wrong input",
+					"name": "skills - successful addition without is_shown",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
@@ -102,11 +440,17 @@
 								"key": "Authorization",
 								"value": "{{valid_admin_token}}",
 								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"skill_name\": \"Python\",\n\t\"category_name\": \"Programming\"\n}"
 						},
 						"url": {
 							"raw": "{{url_post}}/skills",
@@ -118,10 +462,111 @@
 							]
 						}
 					},
-					"_postman_previewlanguage": null,
-					"header": null,
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Credentials",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": ""
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Expose-Headers",
+							"value": ""
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Apr 2019 07:04:42 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"102-wjJ+vfBDS9m3wkwYFHWXhA\""
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Length",
+							"value": "258"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
 					"cookie": [],
-					"body": null
+					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/skills/Python\"\n    },\n    \"category_name\": \"Programming\",\n    \"created\": \"2019-04-12T07:00:16Z\",\n    \"is_shown\": true,\n    \"skill_id\": 362,\n    \"skill_name\": \"Python\"\n}"
+				},
+				{
+					"name": "skills - no token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"skill_name\": \"Ruby\",\n\t\"category_name\": \"Programming\",\n\t\"is_shown\": true\n}"
+						},
+						"url": {
+							"raw": "{{url_post}}/skills",
+							"host": [
+								"{{url_post}}"
+							],
+							"path": [
+								"skills"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Apr 2019 07:28:20 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						},
+						{
+							"key": "Content-Length",
+							"value": "258"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Not Found\"\n}"
 				}
 			]
 		},
@@ -134,11 +579,17 @@
 						"key": "Authorization",
 						"value": "{{valid_admin_token}}",
 						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"category_name\": \"Programming\",\n\t\"is_shown\": true\n}"
 				},
 				"url": {
 					"raw": "{{url_post}}/categories",
@@ -152,6 +603,119 @@
 			},
 			"response": [
 				{
+					"name": "categories - no token",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"category_name\": \"Programming\",\n\t\"is_shown\": true\n}"
+						},
+						"url": {
+							"raw": "{{url_post}}/categories",
+							"host": [
+								"{{url_post}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Apr 2019 08:34:02 GMT"
+						},
+						{
+							"key": "Server",
+							"value": ""
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Not Found\"\n}"
+				},
+				{
+					"name": "categories - is_shown wrong format",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"category_name\": \"Programming\",\n\t\"is_shown\": \"1\"\n}"
+						},
+						"url": {
+							"raw": "{{url_post}}/categories",
+							"host": [
+								"{{url_post}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"This format is not allowed.\"\n}"
+				},
+				{
 					"name": "categories - successful addition",
 					"originalRequest": {
 						"method": "POST",
@@ -160,11 +724,17 @@
 								"key": "Authorization",
 								"value": "{{valid_admin_token}}",
 								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"category_name\": \"Networking\",\n\t\"is_shown\": true\n}"
 						},
 						"url": {
 							"raw": "{{url_post}}/categories",
@@ -178,13 +748,38 @@
 					},
 					"status": "Created",
 					"code": 201,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": null
+					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Networking\"\n    },\n    \"category_id\": 472,\n    \"category_name\": \"Networking\",\n    \"created\": \"2019-04-12T08:25:57Z\",\n    \"is_shown\": true,\n    \"skills\": []\n}"
 				},
 				{
-					"name": "categories - wrong input",
+					"name": "categories - without is_shown",
 					"originalRequest": {
 						"method": "POST",
 						"header": [
@@ -192,11 +787,17 @@
 								"key": "Authorization",
 								"value": "{{valid_admin_token}}",
 								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"category_name\": \"Programming\"\n}"
 						},
 						"url": {
 							"raw": "{{url_post}}/categories",
@@ -208,10 +809,100 @@
 							]
 						}
 					},
-					"_postman_previewlanguage": null,
-					"header": null,
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": null
+					"body": "{\n    \"_links\": {\n        \"next\": \"NaN\",\n        \"previous\": \"NaN\",\n        \"self\": \"/api/categories/Programming\"\n    },\n    \"category_id\": 473,\n    \"category_name\": \"Programming\",\n    \"created\": \"2019-04-12T08:31:49Z\",\n    \"is_shown\": true,\n    \"skills\": []\n}"
+				},
+				{
+					"name": "categories - category_name too short or special characters in it",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{valid_admin_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"category_name\": \"a\",\n\t\"is_shown\": true\n}"
+						},
+						"url": {
+							"raw": "{{url_post}}/categories",
+							"host": [
+								"{{url_post}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"Category name not allowed.\"\n}"
 				},
 				{
 					"name": "categories - invalid, expired or not admin token",
@@ -220,13 +911,19 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{valid_admin_token}}",
+								"value": "{{invalid_or_expired_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": ""
+							"raw": "{\n\t\"category_name\": \"Programming\",\n\t\"is_shown\": true\n}"
 						},
 						"url": {
 							"raw": "{{url_post}}/categories",
@@ -238,10 +935,37 @@
 							]
 						}
 					},
-					"_postman_previewlanguage": null,
-					"header": null,
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Server",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
-					"body": null
+					"body": "{\n    \"error\": \"Unauthorized\"\n}"
 				}
 			]
 		}

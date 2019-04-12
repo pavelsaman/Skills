@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "be492392-185d-49d4-8608-b1e83ee3e30e",
+		"_postman_id": "a2cadd94-c418-4cd5-92e8-36b8772074ea",
 		"name": "Skills",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -13,6 +13,7 @@
 					"script": {
 						"id": "757d142b-ce04-425d-925c-232325bae3b0",
 						"exec": [
+							"// status code 200\r",
 							"eval(pm.variables.get(\"common_tests\"))(200);\r",
 							"\r",
 							"const response_data = pm.response.json();\r",
@@ -35,7 +36,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "01d560f0-7d3a-4234-a3dc-02bf2790c9ea",
+						"id": "47c06ed5-4a5a-466b-86da-b64e121f4548",
 						"exec": [
 							"var common_tests = (status_code) => {",
 							"    pm.test(`Status Code Should Be ${status_code}`,  () => pm.response.to.have.status(status_code));",
@@ -300,7 +301,6 @@
 						"id": "a882521f-8f5e-4de1-a495-ac0853ef90c5",
 						"exec": [
 							"eval(pm.variables.get(\"common_tests\"))(400);\r",
-							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
 							"pm.test(\"Response Should Be\", function() {\r",
@@ -805,7 +805,7 @@
 						"exec": [
 							"eval(pm.variables.get(\"common_tests\"))(400);\r",
 							"\r",
-							"const response_data = pm.response.json()\r",
+							"const response_data = pm.response.json();\r",
 							"\r",
 							"// keys and datatypes\r",
 							"pm.test(\"Includes Keys and Datatypes\", function () {\r",
@@ -1175,6 +1175,7 @@
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
 							"eval(pm.variables.get(\"common_tests\"))(401);",
+							"",
 							"",
 							"const response_data = pm.response.json();",
 							"",
@@ -3394,7 +3395,6 @@
 						"id": "03c357fb-179a-48dc-9728-371ac1d4a29e",
 						"exec": [
 							"eval(pm.variables.get(\"common_tests\"))(200);\r",
-							"\r",
 							"const response_data = pm.response.json();\r",
 							"\r",
 							"// keys and datatypes\r",
@@ -3680,7 +3680,6 @@
 						"id": "ad4cdee0-48af-477a-861a-b2127fd0bcca",
 						"exec": [
 							"eval(pm.variables.get(\"common_tests\"))(401);",
-							"",
 							"",
 							"const response_data = pm.response.json();",
 							"",
