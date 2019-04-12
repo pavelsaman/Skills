@@ -306,7 +306,7 @@
 					"header": [
 						{
 							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
+							"value": "application/json"
 						},
 						{
 							"key": "Date",
@@ -414,7 +414,7 @@
 					"header": [
 						{
 							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
+							"value": "application/json"
 						},
 						{
 							"key": "Date",
@@ -496,7 +496,7 @@
 					"header": [
 						{
 							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
+							"value": "application/json"
 						},
 						{
 							"key": "Date",
@@ -604,7 +604,7 @@
 					"header": [
 						{
 							"key": "Content-Type",
-							"value": "text/html; charset=utf-8"
+							"value": "application/json"
 						},
 						{
 							"key": "Date",
