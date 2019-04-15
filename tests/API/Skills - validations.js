@@ -21,7 +21,7 @@ newman.run({
     collection: require('./Skills - validations.postman_collection.json'),
 	environment: require('./Skills_API - localhost.postman_environment.json'),
 	bail: true,
-	reporters: ['cli', 'junit', 'html']
+	reporters: ['cli', 'junit', 'html', 'htmlextra']
 }).on('request', function (err, args) {
     results_response_statuses.push(args.item.name + ': ' + args.response.code + ' ' + args.response.status);
 }).on('assertion', function (err, args) {
