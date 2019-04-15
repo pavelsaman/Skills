@@ -13,3 +13,6 @@ tests/UI/Tests/*.xml
 tests/UI/Results/
 *.log
 *.db
+node_modules/
+package-lock.json
+newman/
