@@ -14,3 +14,4 @@ tests/UI/Results/
 *.log
 *.db
 *.pyc
+*backup*.db
