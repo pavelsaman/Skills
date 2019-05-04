@@ -106,7 +106,8 @@ Check Elements Present Logged In Visitor
     Page Should Contain Element    ${txt_token}
     Page Should Contain Element    ${txt_token_expiration}   
     Page Should Contain Button    ${btn_delete} 
-    Page Should Contain Button    ${btn_log_out}  
+    Page Should Contain Button    ${btn_log_out}
+    Page Should Not Contain Element    ${form}
 
 Add Category
     [Arguments]    ${cat_name}
