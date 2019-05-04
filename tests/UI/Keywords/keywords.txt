@@ -92,21 +92,22 @@ Check Elements Present Logged In Admin
     Page Should Contain Element    ${txt_main_form_heading}   
     Page Should Contain Element    ${txt_greeting}
     Page Should Contain Element    ${txt_token}
-    Page Should Contain Element    ${txt_token_expiration}   
+    Page Should Contain Element    ${txt_token_expiration}      
     Page Should Contain Button    ${btn_delete} 
     Page Should Contain Button    ${btn_log_out}        
  
 Check Elements Present Logged In Visitor
-    Page Should Contain Element    ${footer}
+    Page Should Contain Element    ${footer}    
     Page Should Contain Element    ${profile_picture} 
     Page Should Contain Element    ${main_picture} 
     Page Should Contain Element    ${txt_name_heading}
     Page Should Contain Element    ${txt_main_text_para}       
     Page Should Contain Element    ${txt_greeting}
     Page Should Contain Element    ${txt_token}
-    Page Should Contain Element    ${txt_token_expiration}   
+    Page Should Contain Element    ${txt_token_expiration}  
     Page Should Contain Button    ${btn_delete} 
     Page Should Contain Button    ${btn_log_out}  
+    Page Should Not Contain Element    ${form}
 
 Add Category
     [Arguments]    ${cat_name}
