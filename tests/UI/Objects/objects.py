@@ -1,7 +1,6 @@
 
-
 profile_picture = "//div[@class='container']//img"
-main_picture = "//div[@class='bg']"
+main_picture = "//div[@class='top']"
 btn_go_to_category = "name:new_category"
 btn_go_back = "name:go_back"
 form = "//form"
@@ -18,6 +17,11 @@ tbl_skills = "//table"
 btn_facebook = "id:facebook"
 btn_linkedin = "id:linkedin"
 btn_log_out = "id:logout"
-btn_delete = "id:delete"
+btn_delete = "id:delete_account"
 txt_heading = "//h1[@class='heading']"
 lnk_error_page = "//a[@id='main']"
+txt_greeting = "//div[@class='col-md-4 text-right']//h4"
+txt_token = "//div[@class='col-md-4 text-right']//p/strong[1]"
+txt_token_expiration = "//div[@class='col-md-4 text-right']//p/strong[2]"
+txt_deletion_info = "//div[@class='col-md-4 text-right']//p"
+

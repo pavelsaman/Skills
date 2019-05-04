@@ -1,4 +1,6 @@
 *** Settings ***
 Variables    ../Objects/objects.py
+Variables    ../Objects/objects_facebook.py
+Variables    ../Objects/objects_linkedin.py
 Variables    ../Resources/variables.py
 Variables    ../Resources/test_data.py

@@ -1,5 +1,6 @@
 ** Settings ***
 Library     SeleniumLibrary
+Library     OperatingSystem    
 Library     Screenshot
 Resource    ../Settings/keywords.txt
 
@@ -8,7 +9,6 @@ Open Website
     [Arguments]    ${browser}    ${url}
     Open Browser    ${url}    browser=${browser}
     Maximize Browser Window
-    Check Elements Present Not Logged
     
 Scroll Into View and Capture Screenshot
     [Arguments]    ${element}    ${screenshot_dir}
@@ -24,28 +24,50 @@ Capture Screenshot
 Check Error Page Elements
     Page Should Contain Element    ${txt_heading}    
     Element Text Should Be    ${txt_heading}    ${ERROR_PAGE_TEXT_HEADING}    
-    Page Should Contain Element    ${lnk_error_page}
-    Click Element    ${lnk_error_page}  
-    Check Elements Present Not Logged      
+    Page Should Contain Element    ${lnk_error_page}      
 
 Log In With Facebook
+    [Arguments]    ${EMAIL}    ${PWD}
     Click Button    ${btn_facebook}
+    Wait Until Page Contains Element    ${btn_login}  
+    ${FB_EMAIL}=    Get Environment Variable    ${EMAIL}
+    ${FB_PWD}=    Get Environment Variable    ${PWD}
+    Input Text    ${txb_email}    ${FB_EMAIL}
+    Input Password    ${txb_fb_password}    ${FB_PWD}
+    Click Button    ${btn_login}
     Wait Until Page Contains Element    ${footer} 
     
 Log In With LinkedIn
+    [Arguments]    ${EMAIL}    ${PWD}
     Click Button    ${btn_linkedin}
+    Wait Until Page Contains Element    ${btn_signin}   
+    ${LI_EMAIL}=    Get Environment Variable    ${EMAIL}
+    ${LI_PWD}=    Get Environment Variable    ${PWD}
+    Input Text    ${txb_username}    ${LI_EMAIL}
+    Input Password    ${txb_li_password}    ${LI_PWD}
+    Click Button    ${btn_signin}
     Wait Until Page Contains Element    ${footer} 
+
+Log Out
+    Click Button    ${btn_log_out}
+    Wait Until Page Does Not Contain Element    ${btn_log_out}
+
+Delete Account
+    Click Button    ${btn_delete}
+    Wait Until Page Contains Element    ${txt_deletion_info}
+    Element Should Contain    ${txt_deletion_info}    ${TEXT_DELETED_ACCOUNT}   
+    Capture Screenshot
 
 Go To Category
     Click Button    ${btn_go_to_category}
     Wait Until Element Is Visible    ${btn_go_back} 
-    Check Elements Present Logged In
+    Check Elements Present Logged In Admin
     Capture Screenshot
 
 Go Back From Category
     Click Button    ${btn_go_back}
     Wait Until Element Is Visible    ${btn_go_to_category} 
-    Check Elements Present Logged In
+    Check Elements Present Logged In Admin
     Capture Screenshot
 
 Check Elements Present Not Logged
@@ -60,17 +82,32 @@ Check Elements Present Not Logged
     Page Should Not Contain Element    ${txt_main_form_heading}
     Page Should Not Contain Element    ${form}        
 
-Check Elements Present Logged In
+Check Elements Present Logged In Admin
     Page Should Contain Element    ${footer}
     Page Should Contain Element    ${form}
     Page Should Contain Element    ${profile_picture} 
     Page Should Contain Element    ${main_picture} 
     Page Should Contain Element    ${txt_name_heading}
     Page Should Contain Element    ${txt_main_text_para}    
-    Page Should Contain Element    ${txt_main_form_heading}      
+    Page Should Contain Element    ${txt_main_form_heading}   
+    Page Should Contain Element    ${txt_greeting}
+    Page Should Contain Element    ${txt_token}
+    Page Should Contain Element    ${txt_token_expiration}   
     Page Should Contain Button    ${btn_delete} 
     Page Should Contain Button    ${btn_log_out}        
  
+Check Elements Present Logged In Visitor
+    Page Should Contain Element    ${footer}
+    Page Should Contain Element    ${profile_picture} 
+    Page Should Contain Element    ${main_picture} 
+    Page Should Contain Element    ${txt_name_heading}
+    Page Should Contain Element    ${txt_main_text_para}       
+    Page Should Contain Element    ${txt_greeting}
+    Page Should Contain Element    ${txt_token}
+    Page Should Contain Element    ${txt_token_expiration}   
+    Page Should Contain Button    ${btn_delete} 
+    Page Should Contain Button    ${btn_log_out}  
+
 Add Category
     [Arguments]    ${cat_name}
     Input Text    ${txt_new_category}    ${cat_name}
