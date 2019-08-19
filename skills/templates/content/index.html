@@ -8,7 +8,7 @@
 {% endblock user_authenticated %}
 
 {% block add_form %}
-{% if current_user.email == admin_email %}
+{% if ( current_user.email == admin_email and current_user.email is not none and admin_email is not none ) %}
 <form action="" method="post" role="form">
     {{ form.hidden_tag() }}
 	{% if form.skill %}
@@ -58,7 +58,7 @@
 {% endblock add_form %}
 
 {% block heading %}
-{% if current_user.email == admin_email %}
+{% if ( current_user.email == admin_email and current_user.email is not none and admin_email is not none ) %}
  {% if form.skill %}
   <h1>New skill</h1>
  {% else %}
@@ -76,7 +76,7 @@
      <table class="table w-100 text-center">
          <tbody>
              <tr>
-				{% if current_user.email == admin_email %}
+				{% if ( current_user.email == admin_email and current_user.email is not none and admin_email is not none ) %}
                  <td align="left">{{s.skill_name}}</td> 
 				 <td align="right">
 					<form action="/auth/delete" method="post">
