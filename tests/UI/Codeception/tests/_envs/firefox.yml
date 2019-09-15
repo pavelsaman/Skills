@@ -1,0 +1,7 @@
+# `firefox` environment config goes here
+# run with java -Dwebdriver.gecko.driver=drivers/geckodriver -jar selenium-server-standalone-3.5.0.jar -enablePassThrough false
+modules:
+    config:
+        WebDriver:
+            browser: 'firefox'
+            window_size: 640x320            

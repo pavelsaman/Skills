@@ -1,0 +1,7 @@
+# `chrome` environment config goes here
+# this will be merged with another env provided (or the default one)
+modules:
+    config:
+        WebDriver:
+            browser: 'chrome'
+            
